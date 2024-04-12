@@ -23,6 +23,7 @@
 		0302D0CF2BA79652009E54E3 /* ThreadListService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0302D0C92BA79652009E54E3 /* ThreadListService.swift */; };
 		0302D0D02BA79652009E54E3 /* AllStationsService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0302D0CA2BA79652009E54E3 /* AllStationsService.swift */; };
 		0302D0D12BA79652009E54E3 /* CarrierService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0302D0CB2BA79652009E54E3 /* CarrierService.swift */; };
+		039DB08B2BC90CA6003EA86A /* SplashScreenView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 039DB08A2BC90CA6003EA86A /* SplashScreenView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -41,6 +42,7 @@
 		0302D0C92BA79652009E54E3 /* ThreadListService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ThreadListService.swift; sourceTree = "<group>"; };
 		0302D0CA2BA79652009E54E3 /* AllStationsService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AllStationsService.swift; sourceTree = "<group>"; };
 		0302D0CB2BA79652009E54E3 /* CarrierService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CarrierService.swift; sourceTree = "<group>"; };
+		039DB08A2BC90CA6003EA86A /* SplashScreenView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplashScreenView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -77,6 +79,7 @@
 			children = (
 				0302D0A22BA793EB009E54E3 /* TravelSchedulerApp.swift */,
 				0302D0A42BA793EB009E54E3 /* ContentView.swift */,
+				039DB08A2BC90CA6003EA86A /* SplashScreenView.swift */,
 				0302D0A62BA793EC009E54E3 /* Assets.xcassets */,
 				0302D0D42BA796DA009E54E3 /* Services */,
 				0302D0D22BA796C5009E54E3 /* Documents */,
@@ -203,6 +206,7 @@
 				0302D0CD2BA79652009E54E3 /* ScheduleService.swift in Sources */,
 				0302D0A52BA793EB009E54E3 /* ContentView.swift in Sources */,
 				0302D0D02BA79652009E54E3 /* AllStationsService.swift in Sources */,
+				039DB08B2BC90CA6003EA86A /* SplashScreenView.swift in Sources */,
 				0302D0C52BA79647009E54E3 /* NearestSettlementService.swift in Sources */,
 				0302D0C32BA7962C009E54E3 /* NearestStationsService.swift in Sources */,
 				0302D0CE2BA79652009E54E3 /* SearchService.swift in Sources */,
@@ -357,7 +361,7 @@
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -390,7 +394,7 @@
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
