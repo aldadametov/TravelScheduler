@@ -12,10 +12,5 @@ struct Station: Identifiable, Hashable {
     var title: String
 }
 
-struct City: Identifiable, Hashable {
-    var id = UUID()
-    var title: String
-    var stations: [Station]
-}
 
 
