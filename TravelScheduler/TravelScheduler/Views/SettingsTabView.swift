@@ -9,20 +9,25 @@ import SwiftUI
 
 struct SettingsTabView: View {
     @Binding var isDarkMode: Bool
-    let termsOfServiceURL: URL
+    let termsOfServiceURLString = "https://yandex.ru/legal/practicum_offer/"
     
     var body: some View {
         VStack(spacing: 0) {
             Toggle("Темная тема", isOn: $isDarkMode)
                 .padding()
-            NavigationLink(destination: WebContentView(url: termsOfServiceURL)) {
-                HStack {
-                    Text("Пользовательское сошлашение")
-                    Spacer()
-                    Image(systemName: "chevron.right")
+            if let url = URL(string: termsOfServiceURLString) {
+                NavigationLink(destination: WebContentView(url: url)) {
+                    HStack {
+                        Text("Пользовательское соглашение")
+                        Spacer()
+                        Image(systemName: "chevron.right")
+                    }
                 }
+                .padding()
+            } else {
+                Text("Недоступно")
+                    .padding()
             }
-            .padding()
             Spacer()
             Text("Приложение использует API Яндекс.Расписания")
                 .font(.system(size: 12))
@@ -34,3 +39,4 @@ struct SettingsTabView: View {
         .padding()
     }
 }
+

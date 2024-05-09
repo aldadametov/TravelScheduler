@@ -7,7 +7,7 @@
 
 import Foundation
 
-class SourceViewModel: ObservableObject {
+class StationsAndCitiesViewModel: ObservableObject {
     
     @Published var cities: [City] = [
         City(title: "Москва", stations: [
@@ -47,5 +47,20 @@ class SourceViewModel: ObservableObject {
     ]
 
     @Published var selectedStation: Station?
+    @Published var trips: [Trip] = []
+    
+    init() {
+        loadTrips()
+    }
+
+    func loadTrips() {
+        trips = [
+            Trip(departureTime: "08:00", arrivalTime: "12:00", travelTime: "4 часа", carrier: "РЖД", carrierLogo: "RZD", hasTransfers: false, date: "23.04.2024"),
+            Trip(departureTime: "09:00", arrivalTime: "13:00", travelTime: "4 часа", carrier: "ФГК", carrierLogo: "FGK", hasTransfers: true, date: "24.04.2024"),
+            Trip(departureTime: "10:00", arrivalTime: "14:00", travelTime: "4 часа", carrier: "Урал Логистика", carrierLogo: "URAL", hasTransfers: false, date: "25.04.2024"),
+            Trip(departureTime: "11:00", arrivalTime: "15:00", travelTime: "4 часа", carrier: "РЖД", carrierLogo: "RZD", hasTransfers: true, date: "26.04.2024")
+        ]
+    }
+    
     
 }

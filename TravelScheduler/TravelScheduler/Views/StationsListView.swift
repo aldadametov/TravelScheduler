@@ -9,9 +9,9 @@ import SwiftUI
 
 struct StationListView: View {
     @State private var searchString = ""
+    @State private var selectedStation: String? // Добавляем для отслеживания выбранной станции
     var stations: [Station]
     var selectAction: (String) -> Void
-    @Environment(\.presentationMode) var presentationMode
     
     var body: some View {
         VStack {
@@ -21,10 +21,11 @@ struct StationListView: View {
                     searchString.isEmpty || station.title.localizedCaseInsensitiveContains(searchString)
                 }, id: \.self) { station in
                     Button(action: {
+                        selectedStation = station.title // Обновляем выбранную станцию
                         selectAction(station.title)
-                        presentationMode.wrappedValue.dismiss()
                     }) {
                         Text(station.title)
+                            .foregroundColor(selectedStation == station.title ? .blue : .black) // Изменение цвета текста при выборе
                     }
                 }
             }
@@ -35,6 +36,7 @@ struct StationListView: View {
         .navigationTitle("Выбор Станции")
     }
 }
+
 
 
 

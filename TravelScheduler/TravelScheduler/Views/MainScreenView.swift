@@ -4,7 +4,7 @@ struct MainScreenView: View {
     @State private var from = ""
     @State private var to = ""
     @AppStorage("isDarkMode") var isDarkMode: Bool = false
-    private let termsOfServiceURL = URL(string: "https://yandex.ru/legal/practicum_offer/")!
+    
 
     var body: some View {
         NavigationStack {
@@ -20,11 +20,12 @@ struct MainScreenView: View {
                     Image(systemName: "arrow.up.message.fill")
                 }
                 
-                SettingsTabView(isDarkMode: $isDarkMode, termsOfServiceURL: termsOfServiceURL)
+                SettingsTabView(isDarkMode: $isDarkMode)
                 .tabItem {
                     Label("", systemImage: "gearshape.fill")
                 }
             }
+            .accentColor(.ypBlack)
         }
     }
 }
