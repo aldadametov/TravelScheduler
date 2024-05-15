@@ -1,32 +1,39 @@
 import SwiftUI
 
 struct MainScreenView: View {
-    @State private var from = ""
-    @State private var to = ""
+    @State private var showTabBar = true
     @AppStorage("isDarkMode") var isDarkMode: Bool = false
-    
 
     var body: some View {
         NavigationStack {
             TabView {
-                HomeTabView(from: $from, to: $to, selectFromAction: { selectedStation in
-                    from = selectedStation
-                }, selectToAction: { selectedStation in
-                    to = selectedStation
-                }, swapAction: {
-                    swap(&from, &to)
-                })
-                .tabItem {
-                    Image(systemName: "arrow.up.message.fill")
-                }
-                
+                HomeTabView(showTabBar: $showTabBar)
+                    .tabItem {
+                        Image(systemName: "arrow.up.message.fill")
+                    }
+
                 SettingsTabView(isDarkMode: $isDarkMode)
-                .tabItem {
-                    Label("", systemImage: "gearshape.fill")
-                }
+                    .tabItem {
+                        Label("", systemImage: "gearshape.fill")
+                    }
             }
             .accentColor(.ypBlack)
+            .onChange(of: showTabBar) { newValue in
+                if !newValue {
+                    hideTabBar()
+                } else {
+                    showTabBarAgain()
+                }
+            }
         }
+    }
+
+    private func hideTabBar() {
+        UITabBar.appearance().isHidden = true
+    }
+
+    private func showTabBarAgain() {
+        UITabBar.appearance().isHidden = false
     }
 }
 
