@@ -16,24 +16,44 @@ struct StationListView: View {
     var body: some View {
         VStack {
             SearchBar(searchText: $searchString)
-            List {
-                ForEach(stations.filter { station in
-                    searchString.isEmpty || station.title.localizedCaseInsensitiveContains(searchString)
-                }, id: \.self) { station in
-                    Button(action: {
-                        selectedStation = station.title
-                        selectAction(station.title)
-                    }) {
-                        Text(station.title)
-                            .foregroundColor(selectedStation == station.title ? .blue : .black)
+            if filteredStations.isEmpty {
+                Spacer()
+                Text("Станция не найдена")
+                    .foregroundColor(.ypBlack)
+                    .font(.system(size: 24, weight: .bold))
+                    .padding()
+                Spacer()
+            } else {
+                List {
+                    ForEach(filteredStations, id: \.self) { station in
+                        Button(action: {
+                            selectedStation = station.title
+                            selectAction(station.title)
+                        }) {
+                            HStack {
+                                Text(station.title)
+                                Spacer()
+                                Image(systemName: "chevron.right")
+                                    .foregroundColor(.ypBlack)
+                            }
+                            .contentShape(Rectangle())
+                        }
+                        .buttonStyle(PlainButtonStyle())
+                        .listRowSeparator(.hidden)
                     }
                 }
+                .listStyle(.plain)
             }
-            .listStyle(.plain)
         }
         .navigationBarBackButtonHidden(true)
         .navigationBarItems(leading: CustomBackButton())
         .navigationTitle("Выбор Станции")
+    }
+    
+    var filteredStations: [Station] {
+        stations.filter { station in
+            searchString.isEmpty || station.title.localizedCaseInsensitiveContains(searchString)
+        }
     }
 }
 

@@ -16,24 +16,42 @@ struct CityListView: View {
     var body: some View {
         VStack {
             SearchBar(searchText: $searchString)
-            List {
-                ForEach(viewModel.cities.filter { city in
-                    searchString.isEmpty || city.title.localizedCaseInsensitiveContains(searchString)
-                }) { city in
-                    Button(action: {
-                        path.append(.stationList(city: city.title))
-                    }) {
-                        Text(city.title)
+            if filteredCities.isEmpty {
+                Spacer()
+                Text("Город не найден")
+                    .foregroundColor(.ypBlack)
+                    .font(.system(size: 24, weight: .bold))
+                    .padding()
+                Spacer()
+            } else {
+                List {
+                    ForEach(filteredCities) { city in
+                        Button(action: {
+                            path.append(.stationList(city: city.title))
+                        }) {
+                            HStack {
+                                Text(city.title)
+                                Spacer()
+                                Image(systemName: "chevron.right")
+                                    .foregroundColor(.ypBlack)
+                            }
+                            .contentShape(Rectangle())
+                        }
+                        .buttonStyle(PlainButtonStyle())
                     }
+                    .listRowSeparator(.hidden)
                 }
+                .listStyle(.plain)
             }
-            .listStyle(.plain)
         }
         .navigationBarBackButtonHidden(true)
         .navigationBarItems(leading: CustomBackButton())
         .navigationTitle("Выбор Города")
     }
+    
+    var filteredCities: [City] {
+        viewModel.cities.filter { city in
+            searchString.isEmpty || city.title.localizedCaseInsensitiveContains(searchString)
+        }
+    }
 }
-
-
-
