@@ -11,7 +11,8 @@ struct HomeTabView: View {
     @State private var fromStation = ""
     @State private var toStation = ""
     @State private var path: [Destination] = []
-    @StateObject var viewModel = StationsAndCitiesViewModel()
+    @StateObject var citiesViewModel = StationsAndCitiesViewModel()
+    @StateObject var tripsViewModel = TripsViewModel()
     @Binding var showTabBar: Bool
 
     var body: some View {
@@ -92,7 +93,7 @@ struct HomeTabView: View {
                         path.removeLast()
                     }, path: $path)
                 case .stationList(let city):
-                    StationListView(stations: viewModel.cities.first(where: { $0.title == city })?.stations ?? [], selectAction: { station in
+                    StationListView(stations: citiesViewModel.cities.first(where: { $0.title == city })?.stations ?? [], selectAction: { station in
                         if path.contains(.cityListFrom) {
                             fromStation = station
                         } else {
@@ -102,9 +103,9 @@ struct HomeTabView: View {
                         path = [] // Возвращаемся на главный экран
                     })
                 case .tripsListView:
-                    let fromCity = viewModel.city(for: fromStation)
-                    let toCity = viewModel.city(for: toStation)
-                    TripsListView(viewModel: viewModel, fromCity: fromCity, fromStation: fromStation, toCity: toCity, toStation: toStation)
+                    let fromCity = citiesViewModel.city(for: fromStation)
+                    let toCity = citiesViewModel.city(for: toStation)
+                    TripsListView(viewModel: tripsViewModel, fromCity: fromCity, fromStation: fromStation, toCity: toCity, toStation: toStation)
                 }
             }
         }
