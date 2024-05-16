@@ -8,7 +8,6 @@
 import Foundation
 
 class StationsAndCitiesViewModel: ObservableObject {
-    
     @Published var cities: [City] = [
         City(title: "Москва", stations: [
             Station(title: "Курский Вокзал"),
@@ -61,6 +60,13 @@ class StationsAndCitiesViewModel: ObservableObject {
             Trip(departureTime: "11:00", arrivalTime: "15:00", travelTime: "4 часа", carrier: "РЖД", carrierLogo: "RZD", hasTransfers: true, date: "26.04.2024")
         ]
     }
-    
-    
+
+    func city(for station: String) -> String {
+        for city in cities {
+            if city.stations.contains(where: { $0.title == station }) {
+                return city.title
+            }
+        }
+        return ""
+    }
 }

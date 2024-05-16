@@ -9,11 +9,16 @@ import SwiftUI
 
 struct TripsListView: View {
     @ObservedObject var viewModel: StationsAndCitiesViewModel
+    var fromCity: String
+    var fromStation: String
+    var toCity: String
+    var toStation: String
 
     var body: some View {
-        Text("Москва (Ярославский вокзал) → Санкт Петербург (Балтийский вокзал)")
+        Text("\(fromCity) (\(fromStation)) → \(toCity) (\(toStation))")
             .font(.system(size: 24, weight: .bold))
             .padding()
+        
         List(viewModel.trips) { trip in
             TripRowView(trip: trip)
                 .listRowSeparator(.hidden)

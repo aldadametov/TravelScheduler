@@ -8,8 +8,8 @@
 import SwiftUI
 
 struct HomeTabView: View {
-    @State private var from = ""
-    @State private var to = ""
+    @State private var fromStation = ""
+    @State private var toStation = ""
     @State private var path: [Destination] = []
     @StateObject var viewModel = StationsAndCitiesViewModel()
     @Binding var showTabBar: Bool
@@ -28,7 +28,7 @@ struct HomeTabView: View {
                                 .fill(Color.ypWhite)
                                 .frame(height: 100)
                             VStack {
-                                TextField("Откуда", text: $from, prompt: Text("Откуда"))
+                                TextField("Откуда", text: $fromStation, prompt: Text("Откуда"))
                                     .padding(.leading, 10)
                                     .frame(height: 40)
                                     .background(Color.ypWhiteUniversal)
@@ -38,7 +38,7 @@ struct HomeTabView: View {
                                         path.append(.cityListFrom)
                                     }
 
-                                TextField("Куда", text: $to, prompt: Text("Куда"))
+                                TextField("Куда", text: $toStation, prompt: Text("Куда"))
                                     .padding(.leading, 10)
                                     .frame(height: 40)
                                     .background(Color.ypWhiteUniversal)
@@ -52,7 +52,7 @@ struct HomeTabView: View {
                         .cornerRadius(20)
                         .padding(.leading, 20)
                         Button(action: {
-                            swap(&from, &to)
+                            swap(&fromStation, &toStation)
                         }) {
                             Image("СhangeButton")
                                 .resizable()
@@ -63,7 +63,7 @@ struct HomeTabView: View {
                     }
                 }
                 .padding(16)
-                if !from.isEmpty && !to.isEmpty {
+                if !fromStation.isEmpty && !toStation.isEmpty {
                     NavigationLink(value: Destination.tripsListView) {
                         Text("Найти")
                             .foregroundColor(.white)
@@ -81,28 +81,30 @@ struct HomeTabView: View {
                 switch destination {
                 case .cityListFrom:
                     CityListView(selectAction: { selectedStation in
-                        from = selectedStation
+                        fromStation = selectedStation
                         showTabBar = true
                         path.removeLast()
                     }, path: $path)
                 case .cityListTo:
                     CityListView(selectAction: { selectedStation in
-                        to = selectedStation
+                        toStation = selectedStation
                         showTabBar = true
                         path.removeLast()
                     }, path: $path)
                 case .stationList(let city):
                     StationListView(stations: viewModel.cities.first(where: { $0.title == city })?.stations ?? [], selectAction: { station in
                         if path.contains(.cityListFrom) {
-                            from = station
+                            fromStation = station
                         } else {
-                            to = station
+                            toStation = station
                         }
                         showTabBar = true
                         path = [] // Возвращаемся на главный экран
                     })
                 case .tripsListView:
-                    TripsListView(viewModel: viewModel)
+                    let fromCity = viewModel.city(for: fromStation)
+                    let toCity = viewModel.city(for: toStation)
+                    TripsListView(viewModel: viewModel, fromCity: fromCity, fromStation: fromStation, toCity: toCity, toStation: toStation)
                 }
             }
         }
