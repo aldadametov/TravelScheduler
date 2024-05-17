@@ -77,7 +77,6 @@ class TripsViewModel: ObservableObject {
         if startTime < endTime {
             return (startTime...endTime).contains(time)
         } else {
-            // Если время перекрывает полночь (например, от 18:00 до 00:00 или от 00:00 до 06:00)
             return time >= startTime || time <= endTime
         }
     }

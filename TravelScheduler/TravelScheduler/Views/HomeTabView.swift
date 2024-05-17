@@ -102,7 +102,7 @@ struct HomeTabView: View {
                             toStation = station
                         }
                         showTabBar = true
-                        path = [] // Возвращаемся на главный экран
+                        path = [] 
                     })
                 case .tripsListView:
                     let fromCity = citiesViewModel.city(for: fromStation)
