@@ -7,7 +7,7 @@
 
 import Foundation
 
-class StationsAndCitiesViewModel: ObservableObject {
+class StationsViewModel: ObservableObject {
     @Published var cities: [City] = [
         City(title: "Москва", stations: [
             Station(title: "Курский Вокзал"),
@@ -44,8 +44,6 @@ class StationsAndCitiesViewModel: ObservableObject {
             Station(title: "Вокзал Казань-Южный")
         ])
     ]
-
-//    @Published var selectedStation: Station?
     
     func city(for station: String) -> String {
         for city in cities {

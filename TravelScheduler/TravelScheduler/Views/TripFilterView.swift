@@ -10,7 +10,7 @@ import SwiftUI
 struct TripFilterView: View {
     @ObservedObject var viewModel: TripsViewModel
     
-    @State private var selectedTimes: Set<TimeInterval> = []
+    @State private var selectedTimes: Set<TimeIntervalEnum> = []
     @State private var showTransfers: Bool? = nil
     @Environment(\.presentationMode) var presentationMode
     
@@ -22,7 +22,7 @@ struct TripFilterView: View {
                     .padding(.horizontal)
                     .padding(.top)
                 
-                ForEach(TimeInterval.allCases, id: \.self) { interval in
+                ForEach(TimeIntervalEnum.allCases, id: \.self) { interval in
                     HStack {
                         Text(interval.rawValue)
                         Spacer()
@@ -85,6 +85,7 @@ struct TripFilterView: View {
         .navigationBarItems(leading: CustomBackButton())
     }
 }
+
 
 
 

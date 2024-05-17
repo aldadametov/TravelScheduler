@@ -9,7 +9,7 @@ import SwiftUI
 
 struct CityListView: View {
     @State private var searchString = ""
-    @StateObject var viewModel = StationsAndCitiesViewModel()
+    @StateObject var viewModel = StationsViewModel()
     var selectAction: (String) -> Void
     @Binding var path: [Destination]
     

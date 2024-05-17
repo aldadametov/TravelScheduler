@@ -12,8 +12,7 @@ struct Trip: Identifiable {
     let departureTime: String
     let arrivalTime: String
     let travelTime: String
-    let carrier: String
-    let carrierLogo: String
+    let carrier: CarrierModel
     let hasTransfers: Bool
     let date: String
 }

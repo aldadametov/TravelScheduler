@@ -11,8 +11,8 @@ struct HomeTabView: View {
     @State private var fromStation = ""
     @State private var toStation = ""
     @State private var path: [Destination] = []
-    @StateObject var citiesViewModel = StationsAndCitiesViewModel()
-    @StateObject var tripsViewModel = TripsViewModel()
+    @StateObject var citiesViewModel = StationsViewModel()
+    @StateObject var tripsViewModel = TripsViewModel(carriersViewModel: CarriersViewModel())
     @Binding var showTabBar: Bool
 
     var body: some View {
@@ -26,24 +26,26 @@ struct HomeTabView: View {
                     HStack {
                         ZStack {
                             Rectangle()
-                                .fill(Color.ypWhite)
+                                .fill(Color.ypWhiteUniversal)
                                 .frame(height: 100)
                             VStack {
-                                TextField("Откуда", text: $fromStation, prompt: Text("Откуда"))
+                                TextField("Откуда", text: $fromStation, prompt: Text("Откуда").foregroundColor(.ypGray))
                                     .padding(.leading, 10)
                                     .frame(height: 40)
                                     .background(Color.ypWhiteUniversal)
                                     .multilineTextAlignment(.leading)
+                                    .foregroundColor(.ypBlackUniversal)
                                     .onTapGesture {
                                         showTabBar = false
                                         path.append(.cityListFrom)
                                     }
 
-                                TextField("Куда", text: $toStation, prompt: Text("Куда"))
+                                TextField("Куда", text: $toStation, prompt: Text("Куда").foregroundColor(.ypGray))
                                     .padding(.leading, 10)
                                     .frame(height: 40)
                                     .background(Color.ypWhiteUniversal)
                                     .multilineTextAlignment(.leading)
+                                    .foregroundColor(.ypBlackUniversal)
                                     .onTapGesture {
                                         showTabBar = false
                                         path.append(.cityListTo)
@@ -105,7 +107,11 @@ struct HomeTabView: View {
                 case .tripsListView:
                     let fromCity = citiesViewModel.city(for: fromStation)
                     let toCity = citiesViewModel.city(for: toStation)
-                    TripsListView(viewModel: tripsViewModel, fromCity: fromCity, fromStation: fromStation, toCity: toCity, toStation: toStation)
+                    TripsListView(viewModel: tripsViewModel, fromCity: fromCity, fromStation: fromStation, toCity: toCity, toStation: toStation, path: $path)
+                case .tripFilterView:
+                    TripFilterView(viewModel: tripsViewModel)
+                case .carrierDetail(let carrier):
+                    CarrierInfoView(carrier: carrier)
                 }
             }
         }
@@ -118,9 +124,3 @@ struct HomeTabView_Previews: PreviewProvider {
     }
 }
 
-enum Destination: Hashable {
-    case cityListFrom
-    case cityListTo
-    case stationList(city: String)
-    case tripsListView
-}

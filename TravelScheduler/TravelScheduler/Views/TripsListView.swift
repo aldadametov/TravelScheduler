@@ -13,18 +13,25 @@ struct TripsListView: View {
     var fromStation: String
     var toCity: String
     var toStation: String
-    
+    @Binding var path: [Destination]
+
     var body: some View {
         VStack {
             Text("\(fromCity) (\(fromStation)) → \(toCity) (\(toStation))")
                 .font(.system(size: 24, weight: .bold))
                 .padding()
+            
             List(viewModel.filteredTrips) { trip in
-                TripRowView(trip: trip)
-                    .listRowSeparator(.hidden)
+                Button(action: {
+                    path.append(.carrierDetail(trip.carrier))
+                }) {
+                    TripRowView(trip: trip)
+                }
+                .listRowSeparator(.hidden)
             }
             .listStyle(.plain)
-            NavigationLink(destination: TripFilterView(viewModel: viewModel)) {
+            
+            NavigationLink(value: Destination.tripFilterView) {
                 HStack {
                     Text("Уточнить время")
                         .foregroundColor(.white)
@@ -42,10 +49,8 @@ struct TripsListView: View {
                 .cornerRadius(16)
             }
             .padding()
-            
         }
         .navigationBarBackButtonHidden(true)
         .navigationBarItems(leading: CustomBackButton())
     }
 }
-

@@ -19,13 +19,13 @@ struct TripRowView: View {
                 .cornerRadius(24)
             VStack{
                 HStack{
-                    Image(trip.carrierLogo)
+                    Image(trip.carrier.logo)
                         .resizable()
                         .cornerRadius(12)
                         .frame(width: 38, height: 38)
                         .padding(.leading, 16)
                     VStack(alignment: .leading) {
-                        Text(trip.carrier)
+                        Text(trip.carrier.name)
                             .font(.system(size: 17))
                             .foregroundStyle(.ypBlackUniversal)
                         if trip.hasTransfers {
@@ -85,6 +85,3 @@ struct TripRowView: View {
 }
 
 
-#Preview {
-    TripRowView(trip: Trip(departureTime: "08:00", arrivalTime: "12:00", travelTime: "4 часа", carrier: "РЖД", carrierLogo: "RZD", hasTransfers: false, date: "23.04.2024"))
-}

@@ -12,21 +12,28 @@ class TripsViewModel: ObservableObject {
     @Published var filteredTrips: [Trip] = []
     @Published var filtersApplied: Bool = false
     
-    init() {
+    private let carriersViewModel: CarriersViewModel
+    
+    init(carriersViewModel: CarriersViewModel) {
+        self.carriersViewModel = carriersViewModel
         loadTrips()
     }
 
     func loadTrips() {
+        let rzd = carriersViewModel.carrier(for: "РЖД")!
+        let fgk = carriersViewModel.carrier(for: "ФГК")!
+        let ural = carriersViewModel.carrier(for: "Урал Логистика")!
+        
         trips = [
-            Trip(departureTime: "08:00", arrivalTime: "12:00", travelTime: "4 часа", carrier: "РЖД", carrierLogo: "RZD", hasTransfers: false, date: "23.04.2024"),
-            Trip(departureTime: "09:00", arrivalTime: "13:00", travelTime: "4 часа", carrier: "ФГК", carrierLogo: "FGK", hasTransfers: true, date: "24.04.2024"),
-            Trip(departureTime: "10:00", arrivalTime: "14:00", travelTime: "4 часа", carrier: "Урал Логистика", carrierLogo: "URAL", hasTransfers: false, date: "25.04.2024"),
-            Trip(departureTime: "11:00", arrivalTime: "15:00", travelTime: "4 часа", carrier: "РЖД", carrierLogo: "RZD", hasTransfers: true, date: "26.04.2024")
+            Trip(departureTime: "08:00", arrivalTime: "12:00", travelTime: "4 часа", carrier: rzd, hasTransfers: false, date: "23.04.2024"),
+            Trip(departureTime: "09:00", arrivalTime: "13:00", travelTime: "4 часа", carrier: fgk, hasTransfers: true, date: "24.04.2024"),
+            Trip(departureTime: "10:00", arrivalTime: "14:00", travelTime: "4 часа", carrier: ural, hasTransfers: false, date: "25.04.2024"),
+            Trip(departureTime: "11:00", arrivalTime: "15:00", travelTime: "4 часа", carrier: rzd, hasTransfers: true, date: "26.04.2024")
         ]
         filteredTrips = trips
     }
 
-    func applyFilters(selectedTimes: Set<TimeInterval>, showTransfers: Bool?) {
+    func applyFilters(selectedTimes: Set<TimeIntervalEnum>, showTransfers: Bool?) {
         filteredTrips = trips.filter { trip in
             let matchesTime = selectedTimes.contains { interval in
                 tripMatchesInterval(trip, interval: interval)
@@ -37,7 +44,7 @@ class TripsViewModel: ObservableObject {
         filtersApplied = !selectedTimes.isEmpty || showTransfers != nil
     }
 
-    private func tripMatchesInterval(_ trip: Trip, interval: TimeInterval) -> Bool {
+    private func tripMatchesInterval(_ trip: Trip, interval: TimeIntervalEnum) -> Bool {
         guard let departureTime = parseTime(trip.departureTime) else {
             return false
         }
@@ -76,7 +83,8 @@ class TripsViewModel: ObservableObject {
     }
 }
 
-enum TimeInterval: String, CaseIterable {
+
+enum TimeIntervalEnum: String, CaseIterable {
     case morning = "Утро 08:00 - 12:00"
     case day = "День 12:00 - 18:00"
     case evening = "Вечер 18:00 - 00:00"
