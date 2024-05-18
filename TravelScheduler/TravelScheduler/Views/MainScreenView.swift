@@ -17,7 +17,10 @@ struct MainScreenView: View {
                         Label("", systemImage: "gearshape.fill")
                     }
             }
-            .accentColor(.ypBlack)
+            .onAppear(){
+                UITabBar.appearance().backgroundColor = .ypWhite
+            }
+            .tint(.ypBlack)
             .onChange(of: showTabBar) { newValue in
                 if !newValue {
                     hideTabBar()

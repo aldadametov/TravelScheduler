@@ -37,6 +37,12 @@ struct SettingsTabView: View {
                 .padding()
         }
         .padding()
+        .background(.ypWhite)
     }
 }
 
+struct SettingsTabView_Previews: PreviewProvider {
+    static var previews: some View {
+        MainScreenView()
+    }
+}

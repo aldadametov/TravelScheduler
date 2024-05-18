@@ -14,7 +14,7 @@ struct TravelSchedulerApp: App {
     
     var body: some Scene {
         WindowGroup {
-            SplashScreenView()
+            MainScreenView()
                 .preferredColorScheme(isDarkMode ? .dark : .light)
         }
     }

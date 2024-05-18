@@ -38,12 +38,14 @@ struct CityListView: View {
                             .contentShape(Rectangle())
                         }
                         .buttonStyle(PlainButtonStyle())
+                        .listRowBackground(Color.ypWhite)
                     }
                     .listRowSeparator(.hidden)
                 }
                 .listStyle(.plain)
             }
         }
+        .background(.ypWhite)
         .navigationBarBackButtonHidden(true)
         .navigationBarItems(leading: CustomBackButton())
         .navigationTitle("Выбор Города")

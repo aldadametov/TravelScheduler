@@ -36,7 +36,9 @@ struct TripsListView: View {
                         TripRowView(trip: trip)
                     }
                     .listRowSeparator(.hidden)
+                    .listRowBackground(Color.ypWhite)
                 }
+                .background(.ypWhite)
                 .listStyle(.plain)
             }
             
@@ -59,6 +61,7 @@ struct TripsListView: View {
             }
             .padding()
         }
+        .background(.ypWhite)
         .navigationBarBackButtonHidden(true)
         .navigationBarItems(leading: CustomBackButton())
     }

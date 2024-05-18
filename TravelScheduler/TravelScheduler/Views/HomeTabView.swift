@@ -18,6 +18,7 @@ struct HomeTabView: View {
     var body: some View {
         NavigationStack(path: $path) {
             VStack {
+                Spacer()
                 ZStack {
                     Rectangle()
                         .fill(Color.ypBlue)
@@ -79,6 +80,7 @@ struct HomeTabView: View {
                     .foregroundColor(.white)
                     .cornerRadius(16)
                 }
+                Spacer() // Добавляем Spacer, чтобы VStack занимал всю доступную область
             }
             .navigationDestination(for: Destination.self) { destination in
                 switch destination {
@@ -102,7 +104,7 @@ struct HomeTabView: View {
                             toStation = station
                         }
                         showTabBar = true
-                        path = [] 
+                        path = []
                     })
                 case .tripsListView:
                     let fromCity = citiesViewModel.city(for: fromStation)
@@ -115,6 +117,8 @@ struct HomeTabView: View {
                 }
             }
         }
+        .background(Color.ypWhite) // Задание фона для всего экрана
+        .edgesIgnoringSafeArea(.all) // Игнорирование безопасной области, чтобы фон охватывал весь экран
     }
 }
 
@@ -123,4 +127,3 @@ struct HomeTabView_Previews: PreviewProvider {
         MainScreenView()
     }
 }
-

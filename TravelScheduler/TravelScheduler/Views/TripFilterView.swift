@@ -81,6 +81,7 @@ struct TripFilterView: View {
                 .padding()
             }
         }
+        .background(.ypWhite)
         .navigationBarBackButtonHidden(true)
         .navigationBarItems(leading: CustomBackButton())
     }

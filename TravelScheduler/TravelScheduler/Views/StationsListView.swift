@@ -41,10 +41,13 @@ struct StationListView: View {
                         .buttonStyle(PlainButtonStyle())
                         .listRowSeparator(.hidden)
                     }
+                    .listRowBackground(Color.ypWhite)
                 }
+                .background(.ypWhite)
                 .listStyle(.plain)
             }
         }
+        .background(.ypWhite)
         .navigationBarBackButtonHidden(true)
         .navigationBarItems(leading: CustomBackButton())
         .navigationTitle("Выбор Станции")

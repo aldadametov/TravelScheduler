@@ -19,6 +19,7 @@ struct ServerErrorView: View {
                 .font(.system(size: 24, weight: .bold))
                 .foregroundColor(.ypBlack)
         }
+        .background(.ypWhite)
         .navigationBarBackButtonHidden(true)
         .navigationBarItems(leading: CustomBackButton())
     }
