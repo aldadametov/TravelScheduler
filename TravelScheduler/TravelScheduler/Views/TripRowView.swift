@@ -29,7 +29,7 @@ struct TripRowView: View {
                             .font(.system(size: 17))
                             .foregroundStyle(.ypBlackUniversal)
                         if trip.hasTransfers {
-                            Text("С пересадкой в Костроме")// temporary mock data
+                            Text("С пересадкой в Костроме")
                                 .font(.system(size: 12))
                                 .foregroundStyle(.ypRed)
                         }

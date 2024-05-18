@@ -41,7 +41,6 @@ struct CarrierInfoView: View {
                     }
                     .padding(.top, 16)
                   
-                    
                     VStack(alignment: .leading) {
                         Text("Телефон")
                             .font(.system(size: 17, weight: .regular))

@@ -17,7 +17,6 @@ struct WebContentView: View {
             .navigationBarBackButtonHidden(true)
             .navigationBarItems(leading: CustomBackButton())
     }
-        
 }
 
 

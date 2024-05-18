@@ -87,9 +87,6 @@ struct TripFilterView: View {
     }
 }
 
-
-
-
 struct CheckBoxView: View {
     var isChecked: Bool
     var action: () -> Void
