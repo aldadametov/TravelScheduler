@@ -8,7 +8,7 @@
 import Foundation
 
 struct City: Identifiable, Hashable {
-    var id = UUID()
-    var title: String
-    var stations: [Station]
+    let id = UUID()
+    let title: String
+    let stations: [Station]
 }

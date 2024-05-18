@@ -1,5 +1,5 @@
 //
-//  NoInternetView.swift
+//  ErrorView.swift
 //  TravelScheduler
 //
 //  Created by Алишер Дадаметов on 17.05.2024.
@@ -7,15 +7,18 @@
 
 import SwiftUI
 
-struct NoInternetView: View {
+struct ErrorView: View {
+    var imageName: String
+    var message: String
+
     var body: some View {
         VStack {
-            Image("no_internet_image")
+            Image(imageName)
                 .resizable()
                 .aspectRatio(contentMode: .fit)
                 .frame(width: 223, height: 223)
             
-            Text("Нет интернета")
+            Text(message)
                 .font(.system(size: 24, weight: .bold))
                 .foregroundColor(.ypBlack)
         }
@@ -25,9 +28,12 @@ struct NoInternetView: View {
     }
 }
 
-struct NoInternetView_Previews: PreviewProvider {
+struct ErrorView_Previews: PreviewProvider {
     static var previews: some View {
-        NoInternetView()
+        Group {
+            ErrorView(imageName: "no_internet_image", message: "Нет интернета")
+            ErrorView(imageName: "server_error_image", message: "Ошибка Сервера")
+        }
     }
 }
 

@@ -7,7 +7,7 @@
 
 import Foundation
 
-class TripsViewModel: ObservableObject {
+final class TripsViewModel: ObservableObject {
     @Published var trips: [Trip] = []
     @Published var filteredTrips: [Trip] = []
     @Published var filtersApplied: Bool = false
@@ -20,16 +20,7 @@ class TripsViewModel: ObservableObject {
     }
 
     func loadTrips() {
-        let rzd = carriersViewModel.carrier(for: "РЖД")!
-        let fgk = carriersViewModel.carrier(for: "ФГК")!
-        let ural = carriersViewModel.carrier(for: "Урал Логистика")!
-        
-        trips = [
-            Trip(departureTime: "08:00", arrivalTime: "12:00", travelTime: "4 часа", carrier: rzd, hasTransfers: false, date: "23.04.2024"),
-            Trip(departureTime: "09:00", arrivalTime: "13:00", travelTime: "4 часа", carrier: fgk, hasTransfers: true, date: "24.04.2024"),
-            Trip(departureTime: "10:00", arrivalTime: "14:00", travelTime: "4 часа", carrier: ural, hasTransfers: false, date: "25.04.2024"),
-            Trip(departureTime: "11:00", arrivalTime: "15:00", travelTime: "4 часа", carrier: rzd, hasTransfers: true, date: "26.04.2024")
-        ]
+        trips = MockData.trips
         filteredTrips = trips
     }
 
@@ -80,12 +71,4 @@ class TripsViewModel: ObservableObject {
             return time >= startTime || time <= endTime
         }
     }
-}
-
-
-enum TimeIntervalEnum: String, CaseIterable {
-    case morning = "Утро 08:00 - 12:00"
-    case day = "День 12:00 - 18:00"
-    case evening = "Вечер 18:00 - 00:00"
-    case night = "Ночь 00:00 - 06:00"
 }

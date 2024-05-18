@@ -15,6 +15,7 @@ struct SettingsTabView: View {
         VStack(spacing: 0) {
             Toggle("Темная тема", isOn: $isDarkMode)
                 .padding()
+                .tint(.ypBlue)
             if let url = URL(string: termsOfServiceURLString) {
                 NavigationLink(destination: WebContentView(url: url)) {
                     HStack {
@@ -29,7 +30,7 @@ struct SettingsTabView: View {
                     .padding()
             }
             Spacer()
-            Text("Приложение использует API Яндекс.Расписания")
+            Text("Приложение использует API «Яндекс.Расписания»")
                 .font(.system(size: 12))
                 .padding()
             Text("Версия 1.0 Beta")

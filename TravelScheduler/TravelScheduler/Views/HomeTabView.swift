@@ -80,7 +80,10 @@ struct HomeTabView: View {
                     .foregroundColor(.white)
                     .cornerRadius(16)
                 }
-                Spacer() // Добавляем Spacer, чтобы VStack занимал всю доступную область
+                Spacer()
+            }
+            .onAppear {
+                showTabBar = true
             }
             .navigationDestination(for: Destination.self) { destination in
                 switch destination {
@@ -90,12 +93,18 @@ struct HomeTabView: View {
                         showTabBar = true
                         path.removeLast()
                     }, path: $path)
+                    .onAppear {
+                        showTabBar = true
+                    }
                 case .cityListTo:
                     CityListView(selectAction: { selectedStation in
                         toStation = selectedStation
                         showTabBar = true
                         path.removeLast()
                     }, path: $path)
+                    .onAppear {
+                        showTabBar = true
+                    }
                 case .stationList(let city):
                     StationListView(stations: citiesViewModel.cities.first(where: { $0.title == city })?.stations ?? [], selectAction: { station in
                         if path.contains(.cityListFrom) {
@@ -106,19 +115,31 @@ struct HomeTabView: View {
                         showTabBar = true
                         path = []
                     })
+                    .onAppear {
+                        showTabBar = true
+                    }
                 case .tripsListView:
                     let fromCity = citiesViewModel.city(for: fromStation)
                     let toCity = citiesViewModel.city(for: toStation)
                     TripsListView(viewModel: tripsViewModel, fromCity: fromCity, fromStation: fromStation, toCity: toCity, toStation: toStation, path: $path)
+                    .onAppear {
+                        showTabBar = true
+                    }
                 case .tripFilterView:
                     TripFilterView(viewModel: tripsViewModel)
+                    .onAppear {
+                        showTabBar = true
+                    }
                 case .carrierDetail(let carrier):
                     CarrierInfoView(carrier: carrier)
+                    .onAppear {
+                        showTabBar = true
+                    }
                 }
             }
         }
-        .background(Color.ypWhite) // Задание фона для всего экрана
-        .edgesIgnoringSafeArea(.all) // Игнорирование безопасной области, чтобы фон охватывал весь экран
+        .background(Color.ypWhite)
+        .edgesIgnoringSafeArea(.all) 
     }
 }
 

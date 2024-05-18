@@ -12,10 +12,12 @@ struct WebContentView: View {
     
     var body: some View {
         WebView(url: url)
+            .background(.ypWhite)
             .navigationTitle("Пользовательское соглашение")
             .navigationBarBackButtonHidden(true)
             .navigationBarItems(leading: CustomBackButton())
     }
+        
 }
 
 

@@ -6,8 +6,8 @@
 //
 
 struct CarrierModel: Hashable {
-    var name: String
-    var logo: String
-    var email: String
-    var phone: String
+    let name: String
+    let logo: String
+    let email: String
+    let phone: String
 }
