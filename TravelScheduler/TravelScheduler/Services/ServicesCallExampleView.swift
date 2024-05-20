@@ -1,7 +1,14 @@
+//
+//  ServicesCallExampleView.swift
+//  TravelScheduler
+//
+//  Created by Алишер Дадаметов on 12.04.2024.
+//
+
 import SwiftUI
 import OpenAPIURLSession
 
-struct ContentView: View {
+struct ServicesCallExampleView: View {
     var body: some View {
         VStack {
             Button("Test Search Service") {
@@ -257,7 +264,8 @@ func testStationsListService() {
 
 struct ContentView_Previews: PreviewProvider {
     static var previews: some View {
-        ContentView()
+        ServicesCallExampleView()
     }
 }
+
 
