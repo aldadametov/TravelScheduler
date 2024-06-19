@@ -5,7 +5,6 @@
 //  Created by Алишер Дадаметов on 15.06.2024.
 //
 
-
 import SwiftUI
 
 struct StoriesView: View {
@@ -13,33 +12,38 @@ struct StoriesView: View {
     @Binding var currentStoryIndex: Int
     @Binding var isPresented: Bool
     @State private var currentProgress: CGFloat = 0
-    private let timerInterval: TimeInterval = 0.25
-    private let storyDuration: TimeInterval = 10.0
     @Environment(\.presentationMode) var presentationMode
-    
+    @State private var timer: Timer?
+    private let timerConfiguration: TimerConfiguration
+
+    init(stories: Binding<[Story]>, currentStoryIndex: Binding<Int>, isPresented: Binding<Bool>) {
+        self._stories = stories
+        self._currentStoryIndex = currentStoryIndex
+        self._isPresented = isPresented
+        self.timerConfiguration = TimerConfiguration(storiesCount: stories.wrappedValue.count)
+    }
+
     var body: some View {
         ZStack(alignment: .topTrailing) {
             Color.ypBlackUniversal
                 .ignoresSafeArea()
-            
-            TabView(selection: $currentStoryIndex) {
-                ForEach(stories.indices, id: \.self) { index in
-                    StoryView(story: stories[index])
-                        .tag(index)
-                        .onAppear {
-                            currentProgress = 0
-                        }
+
+            StoriesTabView(stories: stories, currentStoryIndex: $currentStoryIndex)
+                .onAppear {
+                    resetProgress()
+                    startTimer()
                 }
-            }
-            .tabViewStyle(PageTabViewStyle(indexDisplayMode: .never))
-            .gesture(DragGesture().onEnded { gesture in
-                if gesture.translation.width < 0 {
-                    moveToNextStory()
-                } else if gesture.translation.width > 0 {
-                    moveToPreviousStory()
+                .onDisappear {
+                    stopTimer()
                 }
-            })
-            
+                .gesture(DragGesture().onEnded { gesture in
+                    if gesture.translation.width < 0 {
+                        moveToNextStory()
+                    } else if gesture.translation.width > 0 {
+                        moveToPreviousStory()
+                    }
+                })
+
             Button(action: {
                 presentationMode.wrappedValue.dismiss()
             }) {
@@ -50,30 +54,46 @@ struct StoriesView: View {
                     .padding(.trailing, 16)
             }
         }
-        .onAppear(perform: startTimer)
         .navigationBarBackButtonHidden(true)
     }
-    
+
     private func startTimer() {
-        Timer.scheduledTimer(withTimeInterval: timerInterval, repeats: true) { timer in
+        stopTimer()
+        timer = Timer.scheduledTimer(withTimeInterval: timerConfiguration.timerTickInternal, repeats: true) { timer in
+            withAnimation {
+                currentProgress += timerConfiguration.progressPerTick
+            }
             if currentProgress >= 1 {
                 timer.invalidate()
                 moveToNextStory()
             }
         }
     }
-    
+
+    private func stopTimer() {
+        timer?.invalidate()
+        timer = nil
+    }
+
+    private func resetProgress() {
+        currentProgress = 0
+    }
+
     private func moveToNextStory() {
         if currentStoryIndex < stories.count - 1 {
             currentStoryIndex += 1
+            resetProgress()
+            startTimer()
         } else {
             presentationMode.wrappedValue.dismiss()
         }
     }
-    
+
     private func moveToPreviousStory() {
         if currentStoryIndex > 0 {
             currentStoryIndex -= 1
+            resetProgress()
+            startTimer()
         }
     }
 }

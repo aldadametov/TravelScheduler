@@ -35,6 +35,7 @@
 		032397C22BD83E5200962ED1 /* HomeTabView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 032397C12BD83E5200962ED1 /* HomeTabView.swift */; };
 		032397C52BD83E7F00962ED1 /* SettingsTabView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 032397C42BD83E7F00962ED1 /* SettingsTabView.swift */; };
 		03312BB82BCFDA9C002CA8E8 /* CityListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03312BB72BCFDA9C002CA8E8 /* CityListView.swift */; };
+		033934332C222E2C00013543 /* TimerConfiguration+Calculations.swift in Sources */ = {isa = PBXBuildFile; fileRef = 033934322C222E2C00013543 /* TimerConfiguration+Calculations.swift */; };
 		034E087D2BD10B74001EB10C /* StationModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 034E087C2BD10B74001EB10C /* StationModel.swift */; };
 		035F8F6C2BF6B38F00BA5962 /* TripFilterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 035F8F6B2BF6B38F00BA5962 /* TripFilterView.swift */; };
 		035F8F6F2BF6B61D00BA5962 /* TripsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 035F8F6E2BF6B61D00BA5962 /* TripsViewModel.swift */; };
@@ -85,6 +86,7 @@
 		032397C12BD83E5200962ED1 /* HomeTabView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeTabView.swift; sourceTree = "<group>"; };
 		032397C42BD83E7F00962ED1 /* SettingsTabView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsTabView.swift; sourceTree = "<group>"; };
 		03312BB72BCFDA9C002CA8E8 /* CityListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CityListView.swift; sourceTree = "<group>"; };
+		033934322C222E2C00013543 /* TimerConfiguration+Calculations.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "TimerConfiguration+Calculations.swift"; sourceTree = "<group>"; };
 		034E087C2BD10B74001EB10C /* StationModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StationModel.swift; sourceTree = "<group>"; };
 		035F8F6B2BF6B38F00BA5962 /* TripFilterView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TripFilterView.swift; sourceTree = "<group>"; };
 		035F8F6E2BF6B61D00BA5962 /* TripsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TripsViewModel.swift; sourceTree = "<group>"; };
@@ -203,6 +205,7 @@
 			isa = PBXGroup;
 			children = (
 				030B48B92C1E153C00B7B2CB /* TimerConfiguration.swift */,
+				033934322C222E2C00013543 /* TimerConfiguration+Calculations.swift */,
 			);
 			path = Algorithms;
 			sourceTree = "<group>";
@@ -374,6 +377,7 @@
 				035F8F6F2BF6B61D00BA5962 /* TripsViewModel.swift in Sources */,
 				03BACB3F2BE9663A003D9F8C /* TripsListView.swift in Sources */,
 				030B48B72C1E13AA00B7B2CB /* StoriesTabView.swift in Sources */,
+				033934332C222E2C00013543 /* TimerConfiguration+Calculations.swift in Sources */,
 				038E24292BD04E0300E8CA3D /* SearchBar.swift in Sources */,
 				0302D0A52BA793EB009E54E3 /* MainScreenView.swift in Sources */,
 				035F8F7F2BF7D1B500BA5962 /* ErrorView.swift in Sources */,

@@ -7,17 +7,22 @@
 
 import SwiftUI
 
+extension CGFloat {
+    static let progressBarCornerRadius: CGFloat = 6
+    static let progressBarHeight: CGFloat = 6
+}
+
 struct ProgressBar: View {
     let numberOfSections: Int
     let progress: CGFloat
-    
+
     var body: some View {
         GeometryReader { geometry in
             ZStack(alignment: .leading) {
                 RoundedRectangle(cornerRadius: .progressBarCornerRadius)
                     .frame(width: geometry.size.width, height: .progressBarHeight)
                     .foregroundColor(.white)
-                
+
                 RoundedRectangle(cornerRadius: .progressBarCornerRadius)
                     .frame(
                         width: min(
@@ -26,7 +31,7 @@ struct ProgressBar: View {
                         ),
                         height: .progressBarHeight
                     )
-                    .foregroundColor(.blue)
+                    .foregroundColor(.progressBarFill)
             }
             .mask {
                 MaskView(numberOfSections: numberOfSections)
@@ -37,7 +42,7 @@ struct ProgressBar: View {
 
 private struct MaskView: View {
     let numberOfSections: Int
-    
+
     var body: some View {
         HStack {
             ForEach(0..<numberOfSections, id: \.self) { _ in
@@ -56,7 +61,3 @@ private struct MaskFragmentView: View {
     }
 }
 
-extension CGFloat {
-    static let progressBarCornerRadius: CGFloat = 6
-    static let progressBarHeight: CGFloat = 6
-    }
