@@ -18,6 +18,6 @@ struct TimerConfiguration {
     ) {
         self.storiesCount = storiesCount
         self.timerTickInternal = timerTickInternal
-        self.progressPerTick = CGFloat(timerTickInternal / secondsPerStory)
+        self.progressPerTick = 1.0 / CGFloat(storiesCount) / secondsPerStory * timerTickInternal
     }
 }

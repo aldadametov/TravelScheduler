@@ -8,7 +8,7 @@
 import Foundation
 
 struct Story: Identifiable, Hashable {
-    let id = UUID()
+    let id: Int
     let Image: String
     var isViewed: Bool
     let title: String

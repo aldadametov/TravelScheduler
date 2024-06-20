@@ -5,22 +5,28 @@
 //  Created by Алишер Дадаметов on 15.06.2024.
 //
 
+//
+//  StoriesView.swift
+//  TravelScheduler
+//
+//  Created by Алишер Дадаметов on 15.06.2024.
+//
+
 import SwiftUI
 
 struct StoriesView: View {
-    @Binding var stories: [Story]
-    @Binding var currentStoryIndex: Int
+    let stories: [Story]
     @Binding var isPresented: Bool
+    @State var currentStoryIndex: Int
     @State private var currentProgress: CGFloat = 0
     @Environment(\.presentationMode) var presentationMode
-    @State private var timer: Timer?
     private let timerConfiguration: TimerConfiguration
 
-    init(stories: Binding<[Story]>, currentStoryIndex: Binding<Int>, isPresented: Binding<Bool>) {
-        self._stories = stories
-        self._currentStoryIndex = currentStoryIndex
+    init(stories: [Story], isPresented: Binding<Bool>, currentStoryIndex: Int) {
+        self.stories = stories
         self._isPresented = isPresented
-        self.timerConfiguration = TimerConfiguration(storiesCount: stories.wrappedValue.count)
+        self._currentStoryIndex = State(initialValue: currentStoryIndex)
+        self.timerConfiguration = TimerConfiguration(storiesCount: stories.count)
     }
 
     var body: some View {
@@ -29,23 +35,23 @@ struct StoriesView: View {
                 .ignoresSafeArea()
 
             StoriesTabView(stories: stories, currentStoryIndex: $currentStoryIndex)
-                .onAppear {
-                    resetProgress()
-                    startTimer()
+                .onChange(of: currentStoryIndex) { oldValue, newValue in
+                    didChangeCurrentIndex(oldIndex: oldValue, newIndex: newValue)
                 }
-                .onDisappear {
-                    stopTimer()
-                }
-                .gesture(DragGesture().onEnded { gesture in
-                    if gesture.translation.width < 0 {
-                        moveToNextStory()
-                    } else if gesture.translation.width > 0 {
-                        moveToPreviousStory()
-                    }
-                })
+
+            StoriesProgressBar(
+                storiesCount: stories.count,
+                timerConfiguration: timerConfiguration,
+                currentProgress: $currentProgress
+            )
+            .padding(.top, 28)
+            .onChange(of: currentProgress) { _, newValue in
+                didChangeCurrentProgress(newProgress: newValue)
+            }
 
             Button(action: {
                 presentationMode.wrappedValue.dismiss()
+                isPresented = false
             }) {
                 Image("CloseButton")
                     .resizable()
@@ -57,54 +63,20 @@ struct StoriesView: View {
         .navigationBarBackButtonHidden(true)
     }
 
-    private func startTimer() {
-        stopTimer()
-        timer = Timer.scheduledTimer(withTimeInterval: timerConfiguration.timerTickInternal, repeats: true) { timer in
-            withAnimation {
-                currentProgress += timerConfiguration.progressPerTick
-            }
-            if currentProgress >= 1 {
-                timer.invalidate()
-                moveToNextStory()
-            }
+    private func didChangeCurrentIndex(oldIndex: Int, newIndex: Int) {
+        guard oldIndex != newIndex else { return }
+        let progress = timerConfiguration.progress(for: newIndex)
+        guard abs(progress - currentProgress) >= 0.01 else { return }
+        withAnimation {
+            currentProgress = progress
         }
     }
 
-    private func stopTimer() {
-        timer?.invalidate()
-        timer = nil
-    }
-
-    private func resetProgress() {
-        currentProgress = 0
-    }
-
-    private func moveToNextStory() {
-        if currentStoryIndex < stories.count - 1 {
-            currentStoryIndex += 1
-            resetProgress()
-            startTimer()
-        } else {
-            presentationMode.wrappedValue.dismiss()
-        }
-    }
-
-    private func moveToPreviousStory() {
-        if currentStoryIndex > 0 {
-            currentStoryIndex -= 1
-            resetProgress()
-            startTimer()
+    private func didChangeCurrentProgress(newProgress: CGFloat) {
+        let index = timerConfiguration.index(for: newProgress)
+        guard index != currentStoryIndex else { return }
+        withAnimation {
+            currentStoryIndex = index
         }
     }
 }
-
-struct StoriesView_Previews: PreviewProvider {
-    static var previews: some View {
-        StoriesView(
-            stories: .constant(MockData.stories),
-            currentStoryIndex: .constant(0),
-            isPresented: .constant(true)
-        )
-    }
-}
-

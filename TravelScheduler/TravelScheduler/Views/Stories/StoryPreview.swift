@@ -18,7 +18,7 @@ struct StoryPreview: View {
                 .frame(width: 92, height: 140)
                 .clipShape(RoundedRectangle(cornerRadius: 16))
                 .overlay(
-                    RoundedRectangle(cornerRadius: 16 ).stroke(story.isViewed ? Color.clear : Color.blue, lineWidth: 4)
+                    RoundedRectangle(cornerRadius: 16 ).stroke(story.isViewed ? Color.clear : Color.blue, lineWidth: 8)
                 )
                 .opacity(story.isViewed ? 0.5 : 1.0)
             
