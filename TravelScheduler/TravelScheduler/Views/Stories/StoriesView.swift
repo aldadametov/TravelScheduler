@@ -36,7 +36,8 @@ struct StoriesView: View {
             StoriesProgressBar(
                 storiesCount: stories.count,
                 timerConfiguration: timerConfiguration,
-                currentProgress: $currentProgress
+                currentProgress: $currentProgress,
+                onComplete: moveToNextStory
             )
             .padding(.top, 28)
             .onChange(of: currentProgress) { _, newValue in
@@ -89,5 +90,18 @@ struct StoriesView: View {
             stories[currentStoryIndex].isViewed = true
         }
     }
-}
 
+    private func moveToNextStory() {
+        if currentStoryIndex < stories.count - 1 {
+            currentStoryIndex += 1
+            resetProgress()
+        } else {
+            if currentProgress >= 1 {
+                presentationMode.wrappedValue.dismiss()
+                isPresented = false
+            } else {
+                resetProgress()
+            }
+        }
+    }
+}
