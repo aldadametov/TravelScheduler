@@ -8,19 +8,19 @@
 import SwiftUI
 
 struct StoriesView: View {
-    let stories: [Story]
+    @Binding var stories: [Story]
     @Binding var isPresented: Bool
     @Binding var currentProgress: CGFloat
     @State var currentStoryIndex: Int
     @Environment(\.presentationMode) var presentationMode
     private let timerConfiguration: TimerConfiguration
 
-    init(stories: [Story], isPresented: Binding<Bool>, currentStoryIndex: Int, currentProgress: Binding<CGFloat>) {
-        self.stories = stories
+    init(stories: Binding<[Story]>, isPresented: Binding<Bool>, currentStoryIndex: Int, currentProgress: Binding<CGFloat>) {
+        self._stories = stories
         self._isPresented = isPresented
         self._currentStoryIndex = State(initialValue: currentStoryIndex)
         self._currentProgress = currentProgress
-        self.timerConfiguration = TimerConfiguration(storiesCount: stories.count)
+        self.timerConfiguration = TimerConfiguration(storiesCount: stories.wrappedValue.count)
     }
 
     var body: some View {
@@ -28,7 +28,7 @@ struct StoriesView: View {
             Color.ypBlackUniversal
                 .ignoresSafeArea()
 
-            StoriesTabView(stories: stories, currentStoryIndex: $currentStoryIndex)
+            StoriesTabView(stories: $stories, currentStoryIndex: $currentStoryIndex)
                 .onChange(of: currentStoryIndex) { oldValue, newValue in
                     didChangeCurrentIndex(oldIndex: oldValue, newIndex: newValue)
                 }
@@ -56,6 +56,7 @@ struct StoriesView: View {
         }
         .onAppear {
             resetProgress()
+            markCurrentStoryAsViewed()
         }
         .navigationBarBackButtonHidden(true)
     }
@@ -71,6 +72,7 @@ struct StoriesView: View {
         withAnimation {
             currentProgress = progress
         }
+        markCurrentStoryAsViewed()
     }
 
     private func didChangeCurrentProgress(newProgress: CGFloat) {
@@ -79,5 +81,13 @@ struct StoriesView: View {
         withAnimation {
             currentStoryIndex = index
         }
+        markCurrentStoryAsViewed()
+    }
+
+    private func markCurrentStoryAsViewed() {
+        if !stories[currentStoryIndex].isViewed {
+            stories[currentStoryIndex].isViewed = true
+        }
     }
 }
+

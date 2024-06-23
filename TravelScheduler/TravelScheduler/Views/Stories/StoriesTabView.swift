@@ -4,16 +4,18 @@
 //
 //  Created by Алишер Дадаметов on 15.06.2024.
 //
+
 import SwiftUI
 
 struct StoriesTabView: View {
-    let stories: [Story]
+    @Binding var stories: [Story]
     @Binding var currentStoryIndex: Int
 
     var body: some View {
         TabView(selection: $currentStoryIndex) {
-            ForEach(stories) { story in
-                StoryView(story: story)
+            ForEach(stories.indices, id: \.self) { index in
+                StoryView(story: stories[index])
+                    .tag(index)
                     .onTapGesture {
                         didTapStory()
                     }
