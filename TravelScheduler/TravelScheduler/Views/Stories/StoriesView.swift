@@ -5,27 +5,21 @@
 //  Created by Алишер Дадаметов on 15.06.2024.
 //
 
-//
-//  StoriesView.swift
-//  TravelScheduler
-//
-//  Created by Алишер Дадаметов on 15.06.2024.
-//
-
 import SwiftUI
 
 struct StoriesView: View {
     let stories: [Story]
     @Binding var isPresented: Bool
+    @Binding var currentProgress: CGFloat
     @State var currentStoryIndex: Int
-    @State private var currentProgress: CGFloat = 0
     @Environment(\.presentationMode) var presentationMode
     private let timerConfiguration: TimerConfiguration
 
-    init(stories: [Story], isPresented: Binding<Bool>, currentStoryIndex: Int) {
+    init(stories: [Story], isPresented: Binding<Bool>, currentStoryIndex: Int, currentProgress: Binding<CGFloat>) {
         self.stories = stories
         self._isPresented = isPresented
         self._currentStoryIndex = State(initialValue: currentStoryIndex)
+        self._currentProgress = currentProgress
         self.timerConfiguration = TimerConfiguration(storiesCount: stories.count)
     }
 
@@ -60,7 +54,14 @@ struct StoriesView: View {
                     .padding(.trailing, 16)
             }
         }
+        .onAppear {
+            resetProgress()
+        }
         .navigationBarBackButtonHidden(true)
+    }
+
+    private func resetProgress() {
+        currentProgress = CGFloat(currentStoryIndex) / CGFloat(stories.count)
     }
 
     private func didChangeCurrentIndex(oldIndex: Int, newIndex: Int) {

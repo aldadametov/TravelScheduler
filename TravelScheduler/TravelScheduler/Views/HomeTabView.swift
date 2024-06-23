@@ -18,6 +18,7 @@ struct HomeTabView: View {
     @State private var currentStoryIndex: Int = 0
     @State private var stories: [Story] = MockData.stories
     @State private var isStoriesViewPresented: Bool = false
+    @State private var currentProgress: CGFloat = 0.0
     
     var body: some View {
         NavigationStack(path: $path) {
@@ -30,6 +31,7 @@ struct HomeTabView: View {
                                 .onTapGesture {
                                     selectedStory = story
                                     currentStoryIndex = stories.firstIndex(where: { $0.id == story.id }) ?? 0
+                                    currentProgress = CGFloat(currentStoryIndex) / CGFloat(stories.count)
                                     path.append(.storiesView)
                                     isStoriesViewPresented = true
                                 }
@@ -157,7 +159,7 @@ struct HomeTabView: View {
                             showTabBar = true
                         }
                 case .storiesView:
-                    StoriesView(stories: stories, isPresented: $isStoriesViewPresented,  currentStoryIndex: currentStoryIndex)
+                    StoriesView(stories: stories, isPresented: $isStoriesViewPresented,  currentStoryIndex: currentStoryIndex, currentProgress: $currentProgress)
                         .onAppear {
                             showTabBar = true
                         }
