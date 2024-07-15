@@ -14,11 +14,33 @@ struct HomeTabView: View {
     @StateObject var citiesViewModel = StationsViewModel()
     @StateObject var tripsViewModel = TripsViewModel(carriersViewModel: CarriersViewModel())
     @Binding var showTabBar: Bool
-
+    @State private var selectedStory: Story?
+    @State private var currentStoryIndex: Int = 0
+    @State private var stories: [Story] = MockData.stories
+    @State private var isStoriesViewPresented: Bool = false
+    @State private var currentProgress: CGFloat = 0.0
+    
     var body: some View {
         NavigationStack(path: $path) {
             VStack {
                 Spacer()
+                ScrollView(.horizontal, showsIndicators: false) {
+                    HStack(spacing: 15) {
+                        ForEach(stories) { story in
+                            StoryPreview(story: story)
+                                .onTapGesture {
+                                    selectedStory = story
+                                    currentStoryIndex = stories.firstIndex(where: { $0.id == story.id }) ?? 0
+                                    currentProgress = CGFloat(currentStoryIndex) / CGFloat(stories.count)
+                                    path.append(.storiesView)
+                                    isStoriesViewPresented = true
+                                }
+                        }
+                    }
+                    .padding()
+                }
+                .padding(.top, -250)
+                
                 ZStack {
                     Rectangle()
                         .fill(Color.ypBlue)
@@ -40,7 +62,7 @@ struct HomeTabView: View {
                                         showTabBar = false
                                         path.append(.cityListFrom)
                                     }
-
+                                
                                 TextField("Куда", text: $toStation, prompt: Text("Куда").foregroundColor(.ypGray))
                                     .padding(.leading, 10)
                                     .frame(height: 40)
@@ -66,7 +88,8 @@ struct HomeTabView: View {
                         Spacer()
                     }
                 }
-                .padding(16)
+                .padding()
+                .padding(.top, -80)
                 if !fromStation.isEmpty && !toStation.isEmpty {
                     NavigationLink(value: Destination.tripsListView) {
                         Text("Найти")
@@ -122,24 +145,29 @@ struct HomeTabView: View {
                     let fromCity = citiesViewModel.city(for: fromStation)
                     let toCity = citiesViewModel.city(for: toStation)
                     TripsListView(viewModel: tripsViewModel, fromCity: fromCity, fromStation: fromStation, toCity: toCity, toStation: toStation, path: $path)
-                    .onAppear {
-                        showTabBar = true
-                    }
+                        .onAppear {
+                            showTabBar = true
+                        }
                 case .tripFilterView:
                     TripFilterView(viewModel: tripsViewModel)
-                    .onAppear {
-                        showTabBar = true
-                    }
+                        .onAppear {
+                            showTabBar = true
+                        }
                 case .carrierDetail(let carrier):
                     CarrierInfoView(carrier: carrier)
-                    .onAppear {
-                        showTabBar = true
-                    }
+                        .onAppear {
+                            showTabBar = true
+                        }
+                case .storiesView:
+                    StoriesView(stories: $stories, isPresented: $isStoriesViewPresented, currentStoryIndex: currentStoryIndex, currentProgress: $currentProgress)
+                        .onAppear {
+                            showTabBar = true
+                        }
                 }
             }
         }
         .background(Color.ypWhite)
-        .edgesIgnoringSafeArea(.all) 
+        .edgesIgnoringSafeArea(.all)
     }
 }
 
