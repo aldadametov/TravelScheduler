@@ -87,7 +87,7 @@ struct StoriesView: View {
 
     private func markCurrentStoryAsViewed() {
         if !stories[currentStoryIndex].isViewed {
-            stories[currentStoryIndex].isViewed = true
+            stories[currentStoryIndex] = stories[currentStoryIndex].update(isNewViewed: true)
         }
     }
 

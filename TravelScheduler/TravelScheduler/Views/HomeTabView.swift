@@ -159,7 +159,7 @@ struct HomeTabView: View {
                             showTabBar = true
                         }
                 case .storiesView:
-                    StoriesView(stories: $stories, isPresented: $isStoriesViewPresented,  currentStoryIndex: currentStoryIndex, currentProgress: $currentProgress)
+                    StoriesView(stories: $stories, isPresented: $isStoriesViewPresented, currentStoryIndex: currentStoryIndex, currentProgress: $currentProgress)
                         .onAppear {
                             showTabBar = true
                         }
