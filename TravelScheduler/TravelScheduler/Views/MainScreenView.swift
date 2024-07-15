@@ -9,7 +9,7 @@ struct MainScreenView: View {
         
         NavigationStack {
             TabView {
-                HomeTabView(showTabBar: $showTabBar)
+                HomeTabView() 
                     .tabItem {
                         Image(systemName: "arrow.up.message.fill")
                     }

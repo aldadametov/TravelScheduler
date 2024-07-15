@@ -55,6 +55,7 @@
 		03BACB3C2BE4F92B003D9F8C /* TripRowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03BACB3B2BE4F92B003D9F8C /* TripRowView.swift */; };
 		03BACB3F2BE9663A003D9F8C /* TripsListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03BACB3E2BE9663A003D9F8C /* TripsListView.swift */; };
 		03BD17732C45B7600054A650 /* SettingsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03BD17722C45B7600054A650 /* SettingsViewModel.swift */; };
+		03BD17752C45BADE0054A650 /* HomeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03BD17742C45BADE0054A650 /* HomeViewModel.swift */; };
 		03F2F1872BD2F38C00E17A96 /* WebView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03F2F1862BD2F38C00E17A96 /* WebView.swift */; };
 		03F2F18A2BD2F41300E17A96 /* WebContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03F2F1892BD2F41300E17A96 /* WebContentView.swift */; };
 /* End PBXBuildFile section */
@@ -107,6 +108,7 @@
 		03BACB3B2BE4F92B003D9F8C /* TripRowView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TripRowView.swift; sourceTree = "<group>"; };
 		03BACB3E2BE9663A003D9F8C /* TripsListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TripsListView.swift; sourceTree = "<group>"; };
 		03BD17722C45B7600054A650 /* SettingsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewModel.swift; sourceTree = "<group>"; };
+		03BD17742C45BADE0054A650 /* HomeViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewModel.swift; sourceTree = "<group>"; };
 		03F2F1862BD2F38C00E17A96 /* WebView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebView.swift; sourceTree = "<group>"; };
 		03F2F1892BD2F41300E17A96 /* WebContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebContentView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -249,6 +251,7 @@
 				038E24262BD04A5400E8CA3D /* CitiesViewModel.swift */,
 				03BD17722C45B7600054A650 /* SettingsViewModel.swift */,
 				035F8F6E2BF6B61D00BA5962 /* TripsViewModel.swift */,
+				03BD17742C45BADE0054A650 /* HomeViewModel.swift */,
 				035F8F772BF76A0600BA5962 /* CarrierViewModel.swift */,
 				036B0AD22BF960B0000F0285 /* MockData.swift */,
 			);
@@ -393,6 +396,7 @@
 				036B0AD32BF960B0000F0285 /* MockData.swift in Sources */,
 				0302D0C32BA7962C009E54E3 /* NearestStationsService.swift in Sources */,
 				035F8F6C2BF6B38F00BA5962 /* TripFilterView.swift in Sources */,
+				03BD17752C45BADE0054A650 /* HomeViewModel.swift in Sources */,
 				030B48BE2C1E159700B7B2CB /* ProgressBar.swift in Sources */,
 				031967D72BC91310003BC976 /* ServicesCallExampleView.swift in Sources */,
 				030B48C02C1E15FD00B7B2CB /* StoriesProgressBar.swift in Sources */,
