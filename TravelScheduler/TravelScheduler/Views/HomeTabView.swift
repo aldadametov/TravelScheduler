@@ -109,14 +109,15 @@ struct HomeTabView: View {
                         viewModel.showTabBar = true
                     }
                 case .stationList(let city):
-                    StationListView(stations: viewModel.citiesViewModelInstance.cities.first(where: { $0.title == city })?.stations ?? [], selectAction: { station in
+                    let stations = viewModel.citiesViewModelInstance.cities.first(where: { $0.title == city })?.stations ?? []
+                    StationListView(viewModel: StationListViewModel(stations: stations, selectAction: { station in
                         if viewModel.path.contains(.cityListFrom) {
                             viewModel.updateStation(station, isFrom: true)
                         } else {
                             viewModel.updateStation(station, isFrom: false)
                         }
                         viewModel.resetPath()
-                    })
+                    }))
                     .onAppear {
                         viewModel.showTabBar = true
                     }
@@ -152,6 +153,6 @@ struct HomeTabView: View {
 
 struct HomeTabView_Previews: PreviewProvider {
     static var previews: some View {
-        MainScreenView()
+        MainTabView()
     }
 }

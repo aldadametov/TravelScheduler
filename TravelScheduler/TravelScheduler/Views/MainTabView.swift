@@ -1,6 +1,6 @@
 import SwiftUI
 
-struct MainScreenView: View {
+struct MainTabView: View {
     @State private var showTabBar = true
     @AppStorage("isDarkMode") var isDarkMode: Bool = false
     
@@ -50,6 +50,6 @@ struct MainScreenView: View {
 
 struct MainScreenView_Previews: PreviewProvider {
     static var previews: some View {
-        MainScreenView()
+        MainTabView()
     }
 }
