@@ -1,5 +1,5 @@
 //
-//  SourceViewModel.swift
+//  CitiesViewModel.swift
 //  TravelScheduler
 //
 //  Created by Алишер Дадаметов on 17.04.2024.
@@ -7,7 +7,7 @@
 
 import Foundation
 
-final class StationsViewModel: ObservableObject {
+final class CitiesViewModel: ObservableObject {
     @Published var cities: [City] = []
     
     init() {

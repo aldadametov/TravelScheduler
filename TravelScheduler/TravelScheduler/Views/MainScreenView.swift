@@ -3,8 +3,10 @@ import SwiftUI
 struct MainScreenView: View {
     @State private var showTabBar = true
     @AppStorage("isDarkMode") var isDarkMode: Bool = false
-
+    
     var body: some View {
+        let settingsViewModel = SettingsViewModel(isDarkMode: isDarkMode)
+        
         NavigationStack {
             TabView {
                 HomeTabView(showTabBar: $showTabBar)
@@ -12,7 +14,7 @@ struct MainScreenView: View {
                         Image(systemName: "arrow.up.message.fill")
                     }
 
-                SettingsTabView(isDarkMode: $isDarkMode)
+                SettingsTabView(viewModel: settingsViewModel)
                     .tabItem {
                         Label("", systemImage: "gearshape.fill")
                     }
@@ -27,6 +29,12 @@ struct MainScreenView: View {
                 } else {
                     showTabBarAgain()
                 }
+            }
+            .onChange(of: isDarkMode) { newValue in
+                settingsViewModel.isDarkMode = newValue
+            }
+            .onChange(of: settingsViewModel.isDarkMode) { newValue in
+                isDarkMode = newValue
             }
         }
     }
@@ -45,4 +53,3 @@ struct MainScreenView_Previews: PreviewProvider {
         MainScreenView()
     }
 }
-

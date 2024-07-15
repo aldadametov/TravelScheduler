@@ -48,12 +48,13 @@
 		036B0B212C147537000F0285 /* StoryModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 036B0B202C147537000F0285 /* StoryModel.swift */; };
 		036B0B232C1476BA000F0285 /* StoryPreview.swift in Sources */ = {isa = PBXBuildFile; fileRef = 036B0B222C1476BA000F0285 /* StoryPreview.swift */; };
 		036B0B262C17924F000F0285 /* StoryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 036B0B252C17924F000F0285 /* StoryView.swift */; };
-		038E24272BD04A5400E8CA3D /* StationsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 038E24262BD04A5400E8CA3D /* StationsViewModel.swift */; };
+		038E24272BD04A5400E8CA3D /* CitiesViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 038E24262BD04A5400E8CA3D /* CitiesViewModel.swift */; };
 		038E24292BD04E0300E8CA3D /* SearchBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 038E24282BD04E0300E8CA3D /* SearchBar.swift */; };
 		039DB08B2BC90CA6003EA86A /* SplashScreenView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 039DB08A2BC90CA6003EA86A /* SplashScreenView.swift */; };
 		03BACB392BE3A29C003D9F8C /* TripModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03BACB382BE3A29C003D9F8C /* TripModel.swift */; };
 		03BACB3C2BE4F92B003D9F8C /* TripRowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03BACB3B2BE4F92B003D9F8C /* TripRowView.swift */; };
 		03BACB3F2BE9663A003D9F8C /* TripsListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03BACB3E2BE9663A003D9F8C /* TripsListView.swift */; };
+		03BD17732C45B7600054A650 /* SettingsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03BD17722C45B7600054A650 /* SettingsViewModel.swift */; };
 		03F2F1872BD2F38C00E17A96 /* WebView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03F2F1862BD2F38C00E17A96 /* WebView.swift */; };
 		03F2F18A2BD2F41300E17A96 /* WebContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03F2F1892BD2F41300E17A96 /* WebContentView.swift */; };
 /* End PBXBuildFile section */
@@ -99,12 +100,13 @@
 		036B0B202C147537000F0285 /* StoryModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoryModel.swift; sourceTree = "<group>"; };
 		036B0B222C1476BA000F0285 /* StoryPreview.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoryPreview.swift; sourceTree = "<group>"; };
 		036B0B252C17924F000F0285 /* StoryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoryView.swift; sourceTree = "<group>"; };
-		038E24262BD04A5400E8CA3D /* StationsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StationsViewModel.swift; sourceTree = "<group>"; };
+		038E24262BD04A5400E8CA3D /* CitiesViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CitiesViewModel.swift; sourceTree = "<group>"; };
 		038E24282BD04E0300E8CA3D /* SearchBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchBar.swift; sourceTree = "<group>"; };
 		039DB08A2BC90CA6003EA86A /* SplashScreenView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplashScreenView.swift; sourceTree = "<group>"; };
 		03BACB382BE3A29C003D9F8C /* TripModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TripModel.swift; sourceTree = "<group>"; };
 		03BACB3B2BE4F92B003D9F8C /* TripRowView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TripRowView.swift; sourceTree = "<group>"; };
 		03BACB3E2BE9663A003D9F8C /* TripsListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TripsListView.swift; sourceTree = "<group>"; };
+		03BD17722C45B7600054A650 /* SettingsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewModel.swift; sourceTree = "<group>"; };
 		03F2F1862BD2F38C00E17A96 /* WebView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebView.swift; sourceTree = "<group>"; };
 		03F2F1892BD2F41300E17A96 /* WebContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebContentView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -244,7 +246,8 @@
 		032397C92BD840CE00962ED1 /* ViewModels */ = {
 			isa = PBXGroup;
 			children = (
-				038E24262BD04A5400E8CA3D /* StationsViewModel.swift */,
+				038E24262BD04A5400E8CA3D /* CitiesViewModel.swift */,
+				03BD17722C45B7600054A650 /* SettingsViewModel.swift */,
 				035F8F6E2BF6B61D00BA5962 /* TripsViewModel.swift */,
 				035F8F772BF76A0600BA5962 /* CarrierViewModel.swift */,
 				036B0AD22BF960B0000F0285 /* MockData.swift */,
@@ -381,6 +384,7 @@
 				038E24292BD04E0300E8CA3D /* SearchBar.swift in Sources */,
 				0302D0A52BA793EB009E54E3 /* MainScreenView.swift in Sources */,
 				035F8F7F2BF7D1B500BA5962 /* ErrorView.swift in Sources */,
+				03BD17732C45B7600054A650 /* SettingsViewModel.swift in Sources */,
 				0302D0D02BA79652009E54E3 /* AllStationsService.swift in Sources */,
 				039DB08B2BC90CA6003EA86A /* SplashScreenView.swift in Sources */,
 				030B48BA2C1E153C00B7B2CB /* TimerConfiguration.swift in Sources */,
@@ -399,7 +403,7 @@
 				035F8F722BF75E1200BA5962 /* CarrierModel.swift in Sources */,
 				0302D0CE2BA79652009E54E3 /* SearchService.swift in Sources */,
 				03F2F18A2BD2F41300E17A96 /* WebContentView.swift in Sources */,
-				038E24272BD04A5400E8CA3D /* StationsViewModel.swift in Sources */,
+				038E24272BD04A5400E8CA3D /* CitiesViewModel.swift in Sources */,
 				0302D0A32BA793EB009E54E3 /* TravelSchedulerApp.swift in Sources */,
 				0302D0CC2BA79652009E54E3 /* CopyrightService.swift in Sources */,
 				035F8F752BF766A600BA5962 /* CarrierInfoView.swift in Sources */,

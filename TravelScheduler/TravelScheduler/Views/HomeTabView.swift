@@ -11,7 +11,7 @@ struct HomeTabView: View {
     @State private var fromStation = ""
     @State private var toStation = ""
     @State private var path: [Destination] = []
-    @StateObject var citiesViewModel = StationsViewModel()
+    @StateObject var citiesViewModel = CitiesViewModel()
     @StateObject var tripsViewModel = TripsViewModel(carriersViewModel: CarriersViewModel())
     @Binding var showTabBar: Bool
     @State private var selectedStory: Story?
