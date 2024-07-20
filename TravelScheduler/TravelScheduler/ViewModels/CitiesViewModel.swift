@@ -6,16 +6,24 @@
 //
 
 import Foundation
+import Combine
 
+@MainActor
 final class CitiesViewModel: ObservableObject {
     @Published var cities: [City] = []
     
-    init() {
-        loadCities()
+    public let networkClient: NetworkClient
+    
+    init(networkClient: NetworkClient) {
+        self.networkClient = networkClient
     }
     
-    func loadCities() {
-        cities = MockData.cities
+    func loadCities() async {
+        do {
+            cities = try await networkClient.fetchStations()
+        } catch {
+            print("Ошибка при загрузке данных: \(error)")
+        }
     }
     
     func city(for station: String) -> String {

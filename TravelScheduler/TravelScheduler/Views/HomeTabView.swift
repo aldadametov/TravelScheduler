@@ -6,9 +6,16 @@
 //
 
 import SwiftUI
+import OpenAPIURLSession
 
 struct HomeTabView: View {
-    @StateObject var viewModel = HomeViewModel()
+    @StateObject private var viewModel: HomeViewModel
+    
+    init() {
+        let client = Client(serverURL: try! Servers.server1(), transport: URLSessionTransport())
+        let networkClient = NetworkClient(client: client, apikey: "9b2141ce-cb26-49a7-8937-1d1925023295")
+        _viewModel = StateObject(wrappedValue: HomeViewModel(networkClient: networkClient))
+    }
     
     var body: some View {
         NavigationStack(path: $viewModel.path) {
@@ -97,14 +104,14 @@ struct HomeTabView: View {
                 case .cityListFrom:
                     CityListView(selectAction: { selectedStation in
                         viewModel.updateStation(selectedStation, isFrom: true)
-                    }, path: $viewModel.path)
+                    }, path: $viewModel.path, networkClient: viewModel.citiesViewModelInstance.networkClient)
                     .onAppear {
                         viewModel.showTabBar = true
                     }
                 case .cityListTo:
                     CityListView(selectAction: { selectedStation in
                         viewModel.updateStation(selectedStation, isFrom: false)
-                    }, path: $viewModel.path)
+                    }, path: $viewModel.path, networkClient: viewModel.citiesViewModelInstance.networkClient)
                     .onAppear {
                         viewModel.showTabBar = true
                     }

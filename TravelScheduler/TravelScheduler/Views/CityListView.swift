@@ -9,9 +9,15 @@ import SwiftUI
 
 struct CityListView: View {
     @State private var searchString = ""
-    @StateObject var viewModel = CitiesViewModel()
+    @StateObject private var viewModel: CitiesViewModel
     var selectAction: (String) -> Void
     @Binding var path: [Destination]
+    
+    init(selectAction: @escaping (String) -> Void, path: Binding<[Destination]>, networkClient: NetworkClient) {
+        _viewModel = StateObject(wrappedValue: CitiesViewModel(networkClient: networkClient))
+        self.selectAction = selectAction
+        self._path = path
+    }
     
     var body: some View {
         VStack {
@@ -49,6 +55,9 @@ struct CityListView: View {
         .navigationBarBackButtonHidden(true)
         .navigationBarItems(leading: CustomBackButton())
         .navigationTitle("Выбор Города")
+        .task {
+            await viewModel.loadCities()
+        }
     }
     
     var filteredCities: [City] {
