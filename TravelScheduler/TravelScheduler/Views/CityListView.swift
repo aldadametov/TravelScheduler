@@ -22,7 +22,13 @@ struct CityListView: View {
     var body: some View {
         VStack {
             SearchBar(searchText: $searchString)
-            if filteredCities.isEmpty {
+            if viewModel.isLoading {
+                Spacer()
+                ProgressView()
+                    .progressViewStyle(CircularProgressViewStyle())
+                    .padding()
+                Spacer()
+            } else if filteredCities.isEmpty {
                 Spacer()
                 Text("Город не найден")
                     .foregroundColor(.ypBlack)

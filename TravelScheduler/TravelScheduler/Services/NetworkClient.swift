@@ -24,8 +24,11 @@ actor NetworkClient {
         for country in stationList.countries ?? [] {
             for region in country.regions ?? [] {
                 for settlement in region.settlements ?? [] {
-                    let stations = settlement.stations?.map { Station(title: $0.title ?? "Unknown") } ?? []
-                    let city = City(title: settlement.title ?? "Unknown", stations: stations)
+                    guard let cityTitle = settlement.title, !cityTitle.isEmpty else {
+                        continue
+                    }
+                    let stations = settlement.stations?.compactMap { $0.title != nil ? Station(title: $0.title!) : nil } ?? []
+                    let city = City(title: cityTitle, stations: stations)
                     cities.append(city)
                 }
             }

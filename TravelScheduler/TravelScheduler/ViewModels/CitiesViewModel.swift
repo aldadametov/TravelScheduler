@@ -11,6 +11,7 @@ import Combine
 @MainActor
 final class CitiesViewModel: ObservableObject {
     @Published var cities: [City] = []
+    @Published var isLoading: Bool = false
     
     public let networkClient: NetworkClient
     
@@ -19,10 +20,16 @@ final class CitiesViewModel: ObservableObject {
     }
     
     func loadCities() async {
+        isLoading = true
+        defer { isLoading = false }
+
         do {
-            cities = try await networkClient.fetchStations()
+            let cities = try await networkClient.fetchStations()
+            DispatchQueue.main.async {
+                self.cities = cities
+            }
         } catch {
-            print("Ошибка при загрузке данных: \(error)")
+            print("Error loading cities: \(error)")
         }
     }
     
