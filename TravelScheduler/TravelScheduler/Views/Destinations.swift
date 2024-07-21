@@ -10,7 +10,7 @@ import Foundation
 enum Destination: Hashable {
     case cityListFrom
     case cityListTo
-    case stationList(city: String)
+    case stationList(city: City)
     case tripsListView
     case tripFilterView
     case carrierDetail(CarrierModel)

@@ -116,8 +116,7 @@ struct HomeTabView: View {
                         viewModel.showTabBar = true
                     }
                 case .stationList(let city):
-                    let stations = viewModel.citiesViewModelInstance.cities.first(where: { $0.title == city })?.stations ?? []
-                    StationListView(viewModel: StationListViewModel(stations: stations, selectAction: { station in
+                    StationListView(viewModel: StationListViewModel(stations: city.stations, selectAction: { station in
                         if viewModel.path.contains(.cityListFrom) {
                             viewModel.updateStation(station, isFrom: true)
                         } else {
@@ -127,6 +126,7 @@ struct HomeTabView: View {
                     }))
                     .onAppear {
                         viewModel.showTabBar = true
+                        print("StationListView appeared with \(city.stations.count) stations")
                     }
                 case .tripsListView:
                     let fromCity = viewModel.citiesViewModelInstance.city(for: viewModel.fromStation)

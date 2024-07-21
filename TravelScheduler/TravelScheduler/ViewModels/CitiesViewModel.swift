@@ -24,7 +24,7 @@ final class CitiesViewModel: ObservableObject {
         defer { isLoading = false }
 
         do {
-            let cities = try await networkClient.fetchStations()
+            let cities = try await networkClient.fetchCities()
             DispatchQueue.main.async {
                 self.cities = cities
             }

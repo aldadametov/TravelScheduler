@@ -16,7 +16,7 @@ actor NetworkClient {
         self.apikey = apikey
     }
     
-    func fetchStations() async throws -> [City] {
+    func fetchCities() async throws -> [City] {
         let service = StationsListService(client: client, apikey: apikey)
         let stationList = try await service.getAllStations(apiKey: apikey, lang: nil, format: nil)
         
