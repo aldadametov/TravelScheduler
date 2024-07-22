@@ -10,8 +10,8 @@ import Combine
 
 @MainActor
 class HomeViewModel: ObservableObject {
-    @Published var fromStation: String = ""
-    @Published var toStation: String = ""
+    @Published var fromStation: Station?
+    @Published var toStation: Station?
     @Published var path: [Destination] = []
     @Published var selectedStory: Story?
     @Published var currentStoryIndex: Int = 0
@@ -23,14 +23,15 @@ class HomeViewModel: ObservableObject {
     private let citiesViewModel: CitiesViewModel
     private let tripsViewModel: TripsViewModel
     
-    @MainActor
     init(networkClient: NetworkClient) {
         self.citiesViewModel = CitiesViewModel(networkClient: networkClient)
-        self.tripsViewModel = TripsViewModel(carriersViewModel: CarriersViewModel())
+        self.tripsViewModel = TripsViewModel(networkClient: networkClient, carriersViewModel: CarriersViewModel())
     }
     
     func swapStations() {
         swap(&fromStation, &toStation)
+        swap(&tripsViewModel.fromStation, &tripsViewModel.toStation)
+        swap(&tripsViewModel.fromStationCode, &tripsViewModel.toStationCode)
     }
     
     func selectStory(_ story: Story) {
@@ -46,11 +47,15 @@ class HomeViewModel: ObservableObject {
         path.append(isFrom ? .cityListFrom : .cityListTo)
     }
     
-    func updateStation(_ station: String, isFrom: Bool) {
+    func updateStation(_ station: Station, isFrom: Bool) {
         if isFrom {
             fromStation = station
+            tripsViewModel.fromStation = station
+            tripsViewModel.fromStationCode = station.code
         } else {
             toStation = station
+            tripsViewModel.toStation = station
+            tripsViewModel.toStationCode = station.code
         }
         showTabBar = true
         path.removeLast()
@@ -61,7 +66,7 @@ class HomeViewModel: ObservableObject {
     }
     
     var isSearchButtonEnabled: Bool {
-        !fromStation.isEmpty && !toStation.isEmpty
+        fromStation != nil && toStation != nil
     }
     
     var tripsViewModelInstance: TripsViewModel {

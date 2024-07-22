@@ -51,6 +51,7 @@
 		038E24272BD04A5400E8CA3D /* CitiesViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 038E24262BD04A5400E8CA3D /* CitiesViewModel.swift */; };
 		038E24292BD04E0300E8CA3D /* SearchBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 038E24282BD04E0300E8CA3D /* SearchBar.swift */; };
 		039726C52C4BAFE000CFC4A9 /* NetworkClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 039726C42C4BAFE000CFC4A9 /* NetworkClient.swift */; };
+		039726C72C4EB62A00CFC4A9 /* DateFormatter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 039726C62C4EB62A00CFC4A9 /* DateFormatter.swift */; };
 		039DB08B2BC90CA6003EA86A /* SplashScreenView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 039DB08A2BC90CA6003EA86A /* SplashScreenView.swift */; };
 		03BACB392BE3A29C003D9F8C /* TripModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03BACB382BE3A29C003D9F8C /* TripModel.swift */; };
 		03BACB3C2BE4F92B003D9F8C /* TripRowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03BACB3B2BE4F92B003D9F8C /* TripRowView.swift */; };
@@ -106,6 +107,7 @@
 		038E24262BD04A5400E8CA3D /* CitiesViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CitiesViewModel.swift; sourceTree = "<group>"; };
 		038E24282BD04E0300E8CA3D /* SearchBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchBar.swift; sourceTree = "<group>"; };
 		039726C42C4BAFE000CFC4A9 /* NetworkClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkClient.swift; sourceTree = "<group>"; };
+		039726C62C4EB62A00CFC4A9 /* DateFormatter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateFormatter.swift; sourceTree = "<group>"; };
 		039DB08A2BC90CA6003EA86A /* SplashScreenView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplashScreenView.swift; sourceTree = "<group>"; };
 		03BACB382BE3A29C003D9F8C /* TripModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TripModel.swift; sourceTree = "<group>"; };
 		03BACB3B2BE4F92B003D9F8C /* TripRowView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TripRowView.swift; sourceTree = "<group>"; };
@@ -215,6 +217,7 @@
 			children = (
 				030B48B92C1E153C00B7B2CB /* TimerConfiguration.swift */,
 				033934322C222E2C00013543 /* TimerConfiguration+Calculations.swift */,
+				039726C62C4EB62A00CFC4A9 /* DateFormatter.swift */,
 			);
 			path = Algorithms;
 			sourceTree = "<group>";
@@ -374,6 +377,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				039726C72C4EB62A00CFC4A9 /* DateFormatter.swift in Sources */,
 				032397B82BD8357400962ED1 /* CityModel.swift in Sources */,
 				032397C52BD83E7F00962ED1 /* SettingsTabView.swift in Sources */,
 				039726C52C4BAFE000CFC4A9 /* NetworkClient.swift in Sources */,

@@ -11,12 +11,12 @@ import Combine
 @MainActor
 class StationListViewModel: ObservableObject {
     @Published var searchString: String = ""
-    @Published var selectedStation: String?
+    @Published var selectedStation: Station?
     @Published var stations: [Station] = []
     
-    var selectAction: (String) -> Void
+    var selectAction: (Station) -> Void
     
-    init(stations: [Station], selectAction: @escaping (String) -> Void) {
+    init(stations: [Station], selectAction: @escaping (Station) -> Void) {
         self.stations = stations
         self.selectAction = selectAction
     }
@@ -27,7 +27,7 @@ class StationListViewModel: ObservableObject {
         }
     }
     
-    func selectStation(_ station: String) {
+    func selectStation(_ station: Station) {
         selectedStation = station
         selectAction(station)
     }

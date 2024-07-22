@@ -27,7 +27,12 @@ actor NetworkClient {
                     guard let cityTitle = settlement.title, !cityTitle.isEmpty else {
                         continue
                     }
-                    let stations = settlement.stations?.compactMap { $0.title != nil ? Station(title: $0.title!) : nil } ?? []
+                    let stations: [Station] = settlement.stations?.compactMap { station in
+                        if let title = station.title, let code = station.codes?.yandex_code {
+                            return Station(title: title, code: code)
+                        }
+                        return nil
+                    } ?? []
                     let city = City(title: cityTitle, stations: stations)
                     cities.append(city)
                 }
@@ -35,4 +40,43 @@ actor NetworkClient {
         }
         return cities
     }
+    
+    func searchRoutes(from: String, to: String, date: String) async throws -> [Trip] {
+        let service = SearchService(client: client, apiKey: apikey)
+        let searchResponse = try await service.searchSchedule(
+            from: from,
+            to: to,
+            apiKey: apikey,
+            format: "json",
+            lang: "ru_RU",
+            date: date
+        )
+        
+
+        var trips: [Trip] = []
+                
+
+        if let segments = searchResponse.segments {
+                for segment in segments {
+                    if let fromStation = segment.from, let toStation = segment.to {
+                        let trip = Trip(
+                            departureTime: formatTime(dateString: segment.departure ?? ""),
+                            arrivalTime: formatTime(dateString: segment.arrival ?? ""),
+                            travelTime: formatTravelTime(seconds: segment.duration ?? 0),
+                            carrier: CarrierModel(
+                                name: segment.thread?.carrier?.title ?? "Неизвестный перевозчик",
+                                logo: segment.thread?.carrier?.logo ?? "RZD",
+                                email: segment.thread?.carrier?.email ?? "неизвестный_email",
+                                phone: segment.thread?.carrier?.phone ?? "неизвестный_телефон"
+                            ),
+                            hasTransfers: segment.has_transfers ?? false,
+                            date: formatDate(dateString: date)
+                        )
+                        trips.append(trip)
+                    }
+                }
+            }
+        return trips
+    }
+
 }

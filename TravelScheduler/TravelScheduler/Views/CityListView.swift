@@ -10,10 +10,10 @@ import SwiftUI
 struct CityListView: View {
     @State private var searchString = ""
     @StateObject private var viewModel: CitiesViewModel
-    var selectAction: (String) -> Void
+    var selectAction: (Station) -> Void
     @Binding var path: [Destination]
     
-    init(selectAction: @escaping (String) -> Void, path: Binding<[Destination]>, networkClient: NetworkClient) {
+    init(selectAction: @escaping (Station) -> Void, path: Binding<[Destination]>, networkClient: NetworkClient) {
         _viewModel = StateObject(wrappedValue: CitiesViewModel(networkClient: networkClient))
         self.selectAction = selectAction
         self._path = path
