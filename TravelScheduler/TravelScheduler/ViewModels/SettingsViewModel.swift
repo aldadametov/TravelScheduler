@@ -8,7 +8,8 @@
 import Foundation
 import Combine
 
-class SettingsViewModel: ObservableObject {
+@MainActor
+final class SettingsViewModel: ObservableObject {
     @Published var isDarkMode: Bool {
         didSet {
             UserDefaults.standard.set(isDarkMode, forKey: "isDarkMode")

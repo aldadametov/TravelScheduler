@@ -36,7 +36,6 @@ final class TripsViewModel: ObservableObject {
             DispatchQueue.main.async {
                 self.trips = trips
                 self.filteredTrips = trips
-                print("Trips loaded: \(trips.count)")
             }
         } catch {
             print("Error loading trips: \(error)")

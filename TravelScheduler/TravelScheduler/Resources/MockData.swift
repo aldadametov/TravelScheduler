@@ -15,24 +15,6 @@ enum TimeIntervalEnum: String, CaseIterable {
 }
 
 enum MockData {
-//    static let carriers: [CarrierModel] = [
-//        CarrierModel(name: "РЖД", logo: "RZD", email: "info@rzd.ru", phone: "+74952222222"),
-//        CarrierModel(name: "ФГК", logo: "FGK", email: "info@fgk.ru", phone: "+74953333333"),
-//        CarrierModel(name: "Урал Логистика", logo: "URAL", email: "info@ural.ru", phone: "+74954444444")
-//    ]
-    
-//    static let trips: [Trip] = {
-//        let rzd = carriers.first { $0.name == "РЖД" }!
-//        let fgk = carriers.first { $0.name == "ФГК" }!
-//        let ural = carriers.first { $0.name == "Урал Логистика" }!
-//        
-//        return [
-//            Trip(departureTime: "08:00", arrivalTime: "12:00", travelTime: "4 часа", carrier: rzd, hasTransfers: false, date: "23.04.2024"),
-//            Trip(departureTime: "09:00", arrivalTime: "13:00", travelTime: "4 часа", carrier: fgk, hasTransfers: true, date: "24.04.2024"),
-//            Trip(departureTime: "10:00", arrivalTime: "14:00", travelTime: "4 часа", carrier: ural, hasTransfers: false, date: "25.04.2024"),
-//            Trip(departureTime: "11:00", arrivalTime: "15:00", travelTime: "4 часа", carrier: rzd, hasTransfers: true, date: "26.04.2024")
-//        ]
-//    }()
     
     static let stories: [Story] = [
         Story(id: 0, Image: "storyImage1", isViewed: false, title: "text, text, text, text, text, text, text, text", description: "text, text, text, text, text, text, text, text"),

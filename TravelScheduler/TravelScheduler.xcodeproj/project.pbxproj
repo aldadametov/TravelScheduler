@@ -153,11 +153,12 @@
 			children = (
 				032397C82BD840C200962ED1 /* App */,
 				032397C62BD840AF00962ED1 /* Views */,
-				030B48BC2C1E155A00B7B2CB /* Algorithms */,
 				032397C92BD840CE00962ED1 /* ViewModels */,
+				034E08792BD10B5F001EB10C /* Models */,
+				030B48BC2C1E155A00B7B2CB /* Algorithms */,
 				032397CA2BD8413400962ED1 /* Web */,
 				032397CB2BD8415200962ED1 /* Resources */,
-				034E08792BD10B5F001EB10C /* Models */,
+				039726CB2C4EE24600CFC4A9 /* Network */,
 				0302D0D42BA796DA009E54E3 /* Services */,
 				0302D0D22BA796C5009E54E3 /* Documents */,
 				0302D0A82BA793EC009E54E3 /* Preview Content */,
@@ -194,7 +195,6 @@
 				0302D0C72BA79651009E54E3 /* ScheduleService.swift */,
 				0302D0C82BA79651009E54E3 /* SearchService.swift */,
 				0302D0C92BA79652009E54E3 /* ThreadListService.swift */,
-				039726C42C4BAFE000CFC4A9 /* NetworkClient.swift */,
 			);
 			path = Services;
 			sourceTree = "<group>";
@@ -262,7 +262,6 @@
 				035F8F6E2BF6B61D00BA5962 /* TripsViewModel.swift */,
 				03BD17742C45BADE0054A650 /* HomeViewModel.swift */,
 				035F8F772BF76A0600BA5962 /* CarrierViewModel.swift */,
-				036B0AD22BF960B0000F0285 /* MockData.swift */,
 			);
 			path = ViewModels;
 			sourceTree = "<group>";
@@ -278,6 +277,7 @@
 		032397CB2BD8415200962ED1 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				036B0AD22BF960B0000F0285 /* MockData.swift */,
 				0302D0A62BA793EC009E54E3 /* Assets.xcassets */,
 			);
 			path = Resources;
@@ -293,6 +293,14 @@
 				035F8F712BF75E1200BA5962 /* CarrierModel.swift */,
 			);
 			path = Models;
+			sourceTree = "<group>";
+		};
+		039726CB2C4EE24600CFC4A9 /* Network */ = {
+			isa = PBXGroup;
+			children = (
+				039726C42C4BAFE000CFC4A9 /* NetworkClient.swift */,
+			);
+			path = Network;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -585,6 +593,7 @@
 				SUPPORTS_MACCATALYST = NO;
 				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
 				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_STRICT_CONCURRENCY = complete;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 1;
 			};
@@ -618,6 +627,7 @@
 				SUPPORTS_MACCATALYST = NO;
 				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
 				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_STRICT_CONCURRENCY = complete;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 1;
 			};

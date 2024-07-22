@@ -9,7 +9,7 @@ import Foundation
 import Combine
 
 @MainActor
-class HomeViewModel: ObservableObject {
+final class HomeViewModel: ObservableObject {
     @Published var fromStation: Station?
     @Published var toStation: Station?
     @Published var path: [Destination] = []

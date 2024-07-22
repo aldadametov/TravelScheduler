@@ -9,7 +9,7 @@ import Foundation
 import Combine
 
 @MainActor
-class StationListViewModel: ObservableObject {
+final class StationListViewModel: ObservableObject {
     @Published var searchString: String = ""
     @Published var selectedStation: Station?
     @Published var stations: [Station] = []

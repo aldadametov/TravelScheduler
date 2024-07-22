@@ -7,13 +7,12 @@
 
 import Foundation
 
-struct CarrierModel: Hashable {
+struct CarrierModel: Hashable, Sendable {
     let name: String
     let logo: String
     let email: String
     let phone: String
 
-    // Добавляем соответствие протоколу Hashable
     func hash(into hasher: inout Hasher) {
         hasher.combine(name)
         hasher.combine(logo)

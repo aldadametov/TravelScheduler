@@ -60,7 +60,6 @@ func testSearchService() {
                         lang: "ru_RU",
                         date: "2024-03-17"
                     )
-                    print("Search schedule response:", searchResponse)
                 } catch {
                     print("Error searching schedule:", error)
                 }
@@ -97,7 +96,6 @@ func testScheduleService() {
                         direction: "на Москву",
                         resultTimezone: nil
                     )
-                    print("Schedule response:", scheduleResponse)
                 } catch {
                     print("Error fetching schedule:", error)
                 }

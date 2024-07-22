@@ -130,7 +130,6 @@ struct HomeTabView: View {
                     }))
                     .onAppear {
                         viewModel.showTabBar = true
-                        print("StationListView appeared with \(city.stations.count) stations")
                     }
                 case .tripsListView:
                     TripsListView(viewModel: viewModel.tripsViewModelInstance, path: $viewModel.path)
