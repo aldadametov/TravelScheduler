@@ -11,7 +11,7 @@ protocol ThreadListServiceProtocol {
     func getThreadList(apiKey: String, uid: String, from: String?, to: String?, format: String?, lang: String?, date: String?, showSystems: String?) async throws -> ThreadResponse
 }
 
-final class ThreadListService: ThreadListServiceProtocol {
+actor ThreadListService: ThreadListServiceProtocol {
     private let client: Client
     private let apiKey: String
     

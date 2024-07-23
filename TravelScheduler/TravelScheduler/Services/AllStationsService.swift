@@ -15,7 +15,7 @@ protocol StationsListServiceProtocol {
     func getAllStations(apiKey: String, lang: String?, format: String?) async throws -> StationsList
 }
 
-final class StationsListService: StationsListServiceProtocol {
+actor StationsListService: StationsListServiceProtocol {
     private let client: Client
     private let apikey: String
     

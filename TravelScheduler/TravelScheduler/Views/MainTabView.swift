@@ -9,7 +9,7 @@ struct MainTabView: View {
         
         NavigationStack {
             TabView {
-                HomeTabView() 
+                HomeTabView()
                     .tabItem {
                         Image(systemName: "arrow.up.message.fill")
                     }
@@ -19,21 +19,21 @@ struct MainTabView: View {
                         Label("", systemImage: "gearshape.fill")
                     }
             }
-            .onAppear(){
+            .onAppear {
                 UITabBar.appearance().backgroundColor = .ypWhite
             }
             .tint(.ypBlack)
-            .onChange(of: showTabBar) { newValue in
+            .onChange(of: showTabBar) { oldValue, newValue in
                 if !newValue {
                     hideTabBar()
                 } else {
                     showTabBarAgain()
                 }
             }
-            .onChange(of: isDarkMode) { newValue in
+            .onChange(of: isDarkMode) { oldValue, newValue in
                 settingsViewModel.isDarkMode = newValue
             }
-            .onChange(of: settingsViewModel.isDarkMode) { newValue in
+            .onChange(of: settingsViewModel.isDarkMode) { oldValue, newValue in
                 isDarkMode = newValue
             }
         }

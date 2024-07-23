@@ -28,7 +28,6 @@
 		030B48BA2C1E153C00B7B2CB /* TimerConfiguration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 030B48B92C1E153C00B7B2CB /* TimerConfiguration.swift */; };
 		030B48BE2C1E159700B7B2CB /* ProgressBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 030B48BD2C1E159700B7B2CB /* ProgressBar.swift */; };
 		030B48C02C1E15FD00B7B2CB /* StoriesProgressBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 030B48BF2C1E15FD00B7B2CB /* StoriesProgressBar.swift */; };
-		031967D72BC91310003BC976 /* ServicesCallExampleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 031967D62BC91310003BC976 /* ServicesCallExampleView.swift */; };
 		032397B52BD2FD9F00962ED1 /* CustomBackButtonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 032397B42BD2FD9F00962ED1 /* CustomBackButtonView.swift */; };
 		032397B82BD8357400962ED1 /* CityModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 032397B72BD8357400962ED1 /* CityModel.swift */; };
 		032397BF2BD83D4200962ED1 /* StationsListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 032397BE2BD83D4200962ED1 /* StationsListView.swift */; };
@@ -84,7 +83,6 @@
 		030B48B92C1E153C00B7B2CB /* TimerConfiguration.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimerConfiguration.swift; sourceTree = "<group>"; };
 		030B48BD2C1E159700B7B2CB /* ProgressBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProgressBar.swift; sourceTree = "<group>"; };
 		030B48BF2C1E15FD00B7B2CB /* StoriesProgressBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoriesProgressBar.swift; sourceTree = "<group>"; };
-		031967D62BC91310003BC976 /* ServicesCallExampleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServicesCallExampleView.swift; sourceTree = "<group>"; };
 		032397B42BD2FD9F00962ED1 /* CustomBackButtonView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomBackButtonView.swift; sourceTree = "<group>"; };
 		032397B72BD8357400962ED1 /* CityModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CityModel.swift; sourceTree = "<group>"; };
 		032397BE2BD83D4200962ED1 /* StationsListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StationsListView.swift; sourceTree = "<group>"; };
@@ -186,7 +184,6 @@
 		0302D0D42BA796DA009E54E3 /* Services */ = {
 			isa = PBXGroup;
 			children = (
-				031967D62BC91310003BC976 /* ServicesCallExampleView.swift */,
 				0302D0C22BA7962C009E54E3 /* NearestStationsService.swift */,
 				0302D0C42BA79646009E54E3 /* NearestSettlementService.swift */,
 				0302D0CA2BA79652009E54E3 /* AllStationsService.swift */,
@@ -418,7 +415,6 @@
 				035F8F6C2BF6B38F00BA5962 /* TripFilterView.swift in Sources */,
 				03BD17752C45BADE0054A650 /* HomeViewModel.swift in Sources */,
 				030B48BE2C1E159700B7B2CB /* ProgressBar.swift in Sources */,
-				031967D72BC91310003BC976 /* ServicesCallExampleView.swift in Sources */,
 				030B48C02C1E15FD00B7B2CB /* StoriesProgressBar.swift in Sources */,
 				03312BB82BCFDA9C002CA8E8 /* CityListView.swift in Sources */,
 				03F2F1872BD2F38C00E17A96 /* WebView.swift in Sources */,

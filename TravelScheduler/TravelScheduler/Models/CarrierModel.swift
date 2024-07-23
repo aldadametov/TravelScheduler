@@ -7,23 +7,9 @@
 
 import Foundation
 
-struct CarrierModel: Hashable, Sendable {
+struct CarrierModel: Hashable, Sendable, Equatable {
     let name: String
     let logo: String
     let email: String
     let phone: String
-
-    func hash(into hasher: inout Hasher) {
-        hasher.combine(name)
-        hasher.combine(logo)
-        hasher.combine(email)
-        hasher.combine(phone)
-    }
-
-    static func == (lhs: CarrierModel, rhs: CarrierModel) -> Bool {
-        return lhs.name == rhs.name &&
-               lhs.logo == rhs.logo &&
-               lhs.email == rhs.email &&
-               lhs.phone == rhs.phone
-    }
 }

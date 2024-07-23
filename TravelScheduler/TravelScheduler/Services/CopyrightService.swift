@@ -14,7 +14,7 @@ protocol CopyrightServiceProtocol {
   func getCopyrightInfo(apiKey: String, format: String?) async throws -> Copyright
 }
 
-final class CopyrightService: CopyrightServiceProtocol {
+actor CopyrightService: CopyrightServiceProtocol {
     private let client: Client
     private let apikey: String
     

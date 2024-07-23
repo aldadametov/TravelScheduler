@@ -16,7 +16,7 @@ final class SettingsViewModel: ObservableObject {
         }
     }
     
-    let termsOfServiceURLString = "https://yandex.ru/legal/practicum_offer/"
+    private let termsOfServiceURLString = "https://yandex.ru/legal/practicum_offer/"
     
     init(isDarkMode: Bool) {
         self.isDarkMode = isDarkMode

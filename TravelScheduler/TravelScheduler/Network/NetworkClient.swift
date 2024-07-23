@@ -10,6 +10,7 @@ import Foundation
 actor NetworkClient {
     private let client: Client
     private let apikey: String
+    private let dateFormatter = DateFormatterHelper()
     
     init(client: Client, apikey: String) {
         self.client = client
@@ -60,9 +61,9 @@ actor NetworkClient {
                 for segment in segments {
                     if let fromStation = segment.from, let toStation = segment.to {
                         let trip = Trip(
-                            departureTime: formatTime(dateString: segment.departure ?? ""),
-                            arrivalTime: formatTime(dateString: segment.arrival ?? ""),
-                            travelTime: formatTravelTime(seconds: segment.duration ?? 0),
+                            departureTime: dateFormatter.formatTime(dateString: segment.departure ?? ""),
+                            arrivalTime: dateFormatter.formatTime(dateString: segment.arrival ?? ""),
+                            travelTime: dateFormatter.formatTravelTime(seconds: segment.duration ?? 0),
                             carrier: CarrierModel(
                                 name: segment.thread?.carrier?.title ?? "Неизвестный перевозчик",
                                 logo: segment.thread?.carrier?.logo ?? "RZD",
@@ -70,7 +71,7 @@ actor NetworkClient {
                                 phone: segment.thread?.carrier?.phone ?? "неизвестный_телефон"
                             ),
                             hasTransfers: segment.has_transfers ?? false,
-                            date: formatDate(dateString: date)
+                            date: dateFormatter.formatDate(dateString: date)
                         )
                         trips.append(trip)
                     }

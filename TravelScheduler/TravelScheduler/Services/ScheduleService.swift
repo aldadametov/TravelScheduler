@@ -11,7 +11,7 @@ protocol ScheduleServiceProtocol {
     func getSchedule(apiKey: String, station: String, lang: String?, format: String?, date: String?, transportTypes: String?, event: String?, system: String?, showSystems: String?, direction: String?, resultTimezone: String?) async throws -> ScheduleResponse
 }
 
-final class ScheduleService: ScheduleServiceProtocol {
+actor ScheduleService: ScheduleServiceProtocol {
     private let client: Client
     private let apiKey: String
     

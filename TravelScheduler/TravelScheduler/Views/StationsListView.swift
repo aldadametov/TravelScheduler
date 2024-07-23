@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct StationListView: View {
-    @StateObject var viewModel: StationListViewModel
+    @ObservedObject var viewModel: StationListViewModel
     
     var body: some View {
         VStack {

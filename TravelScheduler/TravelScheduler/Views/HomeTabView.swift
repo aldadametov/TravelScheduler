@@ -9,12 +9,12 @@ import SwiftUI
 import OpenAPIURLSession
 
 struct HomeTabView: View {
-    @StateObject private var viewModel: HomeViewModel
+    @ObservedObject private var viewModel: HomeViewModel
     
     init() {
         let client = Client(serverURL: try! Servers.server1(), transport: URLSessionTransport())
         let networkClient = NetworkClient(client: client, apikey: "9b2141ce-cb26-49a7-8937-1d1925023295")
-        _viewModel = StateObject(wrappedValue: HomeViewModel(networkClient: networkClient))
+        _viewModel = ObservedObject(wrappedValue: HomeViewModel(networkClient: networkClient))
     }
     
     var body: some View {
@@ -106,16 +106,16 @@ struct HomeTabView: View {
             .navigationDestination(for: Destination.self) { destination in
                 switch destination {
                 case .cityListFrom:
-                    CityListView(selectAction: { selectedStation in
+                    CityListView(viewModel: viewModel.citiesViewModelInstance, selectAction: { selectedStation in
                         viewModel.updateStation(selectedStation, isFrom: true)
-                    }, path: $viewModel.path, networkClient: viewModel.citiesViewModelInstance.networkClient)
+                    }, path: $viewModel.path)
                     .onAppear {
                         viewModel.showTabBar = true
                     }
                 case .cityListTo:
-                    CityListView(selectAction: { selectedStation in
+                    CityListView(viewModel: viewModel.citiesViewModelInstance, selectAction: { selectedStation in
                         viewModel.updateStation(selectedStation, isFrom: false)
-                    }, path: $viewModel.path, networkClient: viewModel.citiesViewModelInstance.networkClient)
+                    }, path: $viewModel.path)
                     .onAppear {
                         viewModel.showTabBar = true
                     }
@@ -156,11 +156,5 @@ struct HomeTabView: View {
         }
         .background(Color.ypWhite)
         .edgesIgnoringSafeArea(.all)
-    }
-}
-
-struct HomeTabView_Previews: PreviewProvider {
-    static var previews: some View {
-        MainTabView()
     }
 }
