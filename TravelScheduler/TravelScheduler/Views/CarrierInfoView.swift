@@ -15,17 +15,30 @@ struct CarrierInfoView: View {
             Color.ypWhite.edgesIgnoringSafeArea(.all)
             
             VStack(alignment: .leading) {
-                Image(carrier.logo)
-                    .resizable()
-                    .aspectRatio(contentMode: .fit)
-                    .frame(width: 343, height: 104)
-                    .background(
-                        RoundedRectangle(cornerRadius: 24)
-                            .fill(Color.white)
-                    )
-                    .cornerRadius(24)
-                    .padding(.top, 16)
-                
+                if let logoUrl = URL(string: carrier.logo) {
+                    AsyncImage(url: logoUrl) { phase in
+                        if let image = phase.image {
+                            image
+                                .resizable()
+                                .aspectRatio(contentMode: .fit)
+                                .frame(width: 343, height: 104)
+                                .background(
+                                    RoundedRectangle(cornerRadius: 24)
+                                        .fill(Color.white)
+                                )
+                                .cornerRadius(24)
+                                .padding(.top, 16)
+                        } else {
+                            Rectangle()
+                                .frame(width: 343, height: 104)
+                                .background(
+                                    RoundedRectangle(cornerRadius: 24)
+                                        .fill(Color.white)
+                                )
+                                .cornerRadius(24)
+                        }
+                    }
+                }
                 VStack(alignment: .leading) {
                     Text(carrier.name)
                         .font(.system(size: 24, weight: .bold))
@@ -40,7 +53,7 @@ struct CarrierInfoView: View {
                             .foregroundStyle(.ypBlue)
                     }
                     .padding(.top, 16)
-                  
+                    
                     VStack(alignment: .leading) {
                         Text("Телефон")
                             .font(.system(size: 17, weight: .regular))
@@ -60,9 +73,3 @@ struct CarrierInfoView: View {
     }
 }
 
-struct CarrierDetailView_Previews: PreviewProvider {
-    static var previews: some View {
-        let carrier = CarrierModel(name: "ОАО РЖД", logo: "RZD", email: "example@example.com", phone: "+1234567890")
-        return CarrierInfoView(carrier: carrier)
-    }
-}

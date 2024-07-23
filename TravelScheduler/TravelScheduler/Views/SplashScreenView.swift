@@ -13,7 +13,7 @@ struct SplashScreenView: View {
     
     var body: some View {
         if isActive == true {
-            MainScreenView()
+            MainTabView()
         } else {
             Image("SplashScreen")
                 .resizable()

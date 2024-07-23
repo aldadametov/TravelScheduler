@@ -9,14 +9,26 @@ import SwiftUI
 
 struct CityListView: View {
     @State private var searchString = ""
-    @StateObject var viewModel = StationsViewModel()
-    var selectAction: (String) -> Void
+    @ObservedObject var viewModel: CitiesViewModel
+    var selectAction: (Station) -> Void
     @Binding var path: [Destination]
+    
+    init(viewModel: CitiesViewModel, selectAction: @escaping (Station) -> Void, path: Binding<[Destination]>) {
+        self.viewModel = viewModel
+        self.selectAction = selectAction
+        self._path = path
+    }
     
     var body: some View {
         VStack {
             SearchBar(searchText: $searchString)
-            if filteredCities.isEmpty {
+            if viewModel.isLoading {
+                Spacer()
+                ProgressView()
+                    .progressViewStyle(CircularProgressViewStyle())
+                    .padding()
+                Spacer()
+            } else if filteredCities.isEmpty {
                 Spacer()
                 Text("Город не найден")
                     .foregroundColor(.ypBlack)
@@ -27,7 +39,9 @@ struct CityListView: View {
                 List {
                     ForEach(filteredCities) { city in
                         Button(action: {
-                            path.append(.stationList(city: city.title))
+                            if let city = viewModel.cities.first(where: { $0.title == city.title }) {
+                                path.append(.stationList(city: city))
+                            }
                         }) {
                             HStack {
                                 Text(city.title)
@@ -49,6 +63,11 @@ struct CityListView: View {
         .navigationBarBackButtonHidden(true)
         .navigationBarItems(leading: CustomBackButton())
         .navigationTitle("Выбор Города")
+        .task {
+            if viewModel.cities.isEmpty {
+                await viewModel.loadCities()
+            }
+        }
     }
     
     var filteredCities: [City] {

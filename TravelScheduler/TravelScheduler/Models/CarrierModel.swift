@@ -5,7 +5,9 @@
 //  Created by Алишер Дадаметов on 17.05.2024.
 //
 
-struct CarrierModel: Hashable {
+import Foundation
+
+struct CarrierModel: Hashable, Sendable, Equatable {
     let name: String
     let logo: String
     let email: String

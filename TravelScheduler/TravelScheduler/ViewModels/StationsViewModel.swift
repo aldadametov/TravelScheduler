@@ -1,29 +1,34 @@
 //
-//  SourceViewModel.swift
+//  StationsViewModel.swift
 //  TravelScheduler
 //
-//  Created by Алишер Дадаметов on 17.04.2024.
+//  Created by Алишер Дадаметов on 15.07.2024.
 //
 
 import Foundation
+import Combine
 
-final class StationsViewModel: ObservableObject {
-    @Published var cities: [City] = []
+@MainActor
+final class StationListViewModel: ObservableObject {
+    @Published var searchString: String = ""
+    @Published var selectedStation: Station?
+    @Published var stations: [Station] = []
     
-    init() {
-        loadCities()
+    var selectAction: (Station) -> Void
+    
+    init(stations: [Station], selectAction: @escaping (Station) -> Void) {
+        self.stations = stations
+        self.selectAction = selectAction
     }
     
-    func loadCities() {
-        cities = MockData.cities
-    }
-    
-    func city(for station: String) -> String {
-        for city in cities {
-            if city.stations.contains(where: { $0.title == station }) {
-                return city.title
-            }
+    var filteredStations: [Station] {
+        stations.filter { station in
+            searchString.isEmpty || station.title.localizedCaseInsensitiveContains(searchString)
         }
-        return ""
+    }
+    
+    func selectStation(_ station: Station) {
+        selectedStation = station
+        selectAction(station)
     }
 }
